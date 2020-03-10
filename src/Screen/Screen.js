@@ -5,6 +5,7 @@ import Battery from 'react-device-battery';
 import styles from "./Screen.module.css";
 
 import DesktopIcon from "./DesktopIcon/DesktopIcon";
+import Window from "./Window/Window";
 
 class Screen extends React.Component {
   renderBattery = ({ battery }) => {
@@ -46,8 +47,11 @@ class Screen extends React.Component {
       <div className={styles.screenContainer}>
         <div className={styles.desktop}>
           <DesktopIcon icon="user" name="Profile" />
-          <DesktopIcon icon="images" name="Projects" />
-          <div className={styles.windowContainer}></div>
+          <DesktopIcon icon="pencil-alt" name="Projects" />
+          <DesktopIcon icon="paper-plane" name="Contact" />
+          <div className={styles.windowContainer}>
+            <Window title="Window title" />
+          </div>
           <DesktopIcon icon="code" name="Credits" className={styles.credits} />
         </div>
         {this.renderTaskbar()}

@@ -13,6 +13,9 @@
 .windowContainer {
   grid-row: 1 / end;
   grid-column: 2 / var(--width);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .taskbar {
