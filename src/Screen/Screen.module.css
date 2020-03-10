@@ -1,17 +1,23 @@
-.desktop {
+.screenContainer {
+  background: black;
   --width: 10;
   --height: 7;
+  --taskbar-height: 30px;
   width: calc(var(--width) * 100px);
-  height: calc(var(--height) * 100px);
+  height: calc(var(--height) * 100px + var(--taskbar-height));
+}
+
+.desktop {
   background: skyblue;
   display: grid;
   grid-template-columns: repeat(var(--width), 1fr);
-  grid-template-rows: repeat(var(--height), 1fr);
+  grid-template-rows: repeat(var(--height), 1fr) var(--taskbar-height);
   grid-auto-flow: column;
+  height: 100%;
 }
 
 .windowContainer {
-  grid-row: 1 / end;
+  grid-row: 1 / calc(var(--height) + 1);
   grid-column: 2 / var(--width);
   display: flex;
   justify-content: center;
@@ -20,8 +26,8 @@
 
 .taskbar {
   grid-column: 1 / end;
-  grid-row-start: var(--height);
-  height: 30px;
+  grid-row-start: calc(var(--height) + 1);
+  height: 100%;
   background: white;
   align-self: end;
   padding: 0 10px;
@@ -52,6 +58,6 @@
 }
 
 .credits {
-  grid-row: var(--height) / end;
-  grid-column: var(--width) / end;
+  grid-row-start: var(--height);
+  grid-column-start: var(--width);
 }
