@@ -1,13 +1,33 @@
 import React from "react";
+import { connect } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Clock from 'react-live-clock';
 import Battery from 'react-device-battery';
 import styles from "./Screen.module.css";
 
 import DesktopIcon from "./DesktopIcon/DesktopIcon";
-import Window from "./Window/Window";
+import { openWindow } from "../store";
+
+function mapStateToProps(state) {
+  return { currentWindows: state.currentWindows };
+}
+
+const mapDispatchToProps = {
+  openWindow
+}
 
 class Screen extends React.Component {
+  openAbout = () => {
+    this.props.openWindow("about");
+  }
+
+  renderTopWindow = () => {
+    const { currentWindows } = this.props;
+    if (currentWindows.length) {
+      return currentWindows[currentWindows.length - 1].component;
+    }
+  }
+
   renderBattery = ({ battery }) => {
     let batteryIcon = "battery-";
     if (battery < 5) {
@@ -24,10 +44,25 @@ class Screen extends React.Component {
     return <FontAwesomeIcon icon={batteryIcon} />
   }
 
+  renderTaskbarWindows = () => {
+    const { currentWindows } = this.props;
+    if (currentWindows.length) {
+      return currentWindows.map((window, index) => {
+        return <div key={index} className={styles.taskbarTab}>
+          <FontAwesomeIcon icon={window.icon} className={styles.tabIcon} />
+          {window.title}
+        </div>;
+      });
+    }
+  }
+
   renderTaskbar = () => {
     return (
       <div className={styles.taskbar}>
         <FontAwesomeIcon icon={["fab", "windows"]} />
+        <div className={styles.taskbarTabs}>
+          {this.renderTaskbarWindows()}
+        </div>
         <div className={styles.taskbarRight}>
           <FontAwesomeIcon icon="wifi" />
           <Battery
@@ -46,11 +81,11 @@ class Screen extends React.Component {
     return (
       <div className={styles.screenContainer}>
         <div className={styles.desktop}>
-          <DesktopIcon icon="user" name="Profile" />
+          <DesktopIcon icon="user" name="Profile" onClick={this.openAbout} />
           <DesktopIcon icon="pencil-alt" name="Projects" />
           <DesktopIcon icon="paper-plane" name="Contact" />
           <div className={styles.windowContainer}>
-            <Window title="Window title" />
+            {this.renderTopWindow()}
           </div>
           <DesktopIcon icon="code" name="Credits" className={styles.credits} />
         </div>
@@ -60,4 +95,4 @@ class Screen extends React.Component {
   }
 }
 
-export default Screen;
+export default connect(mapStateToProps, mapDispatchToProps)(Screen);

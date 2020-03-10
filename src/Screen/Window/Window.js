@@ -14,7 +14,9 @@ class Window extends React.Component {
             <FontAwesomeIcon icon="window-close" />
           </div>
         </div>
-        <div className={styles.windowInner}></div>
+        <div className={styles.windowInner}>
+          {this.props.children}
+        </div>
       </div>
     );
   }
