@@ -1,7 +1,6 @@
-.screen {
-  --width: 9;
+.desktop {
+  --width: 10;
   --height: 7;
-
   width: calc(var(--width) * 100px);
   height: calc(var(--height) * 100px);
   background: skyblue;
@@ -11,10 +10,28 @@
   grid-auto-flow: column;
 }
 
+.windowContainer {
+  grid-row: 1 / end;
+  grid-column: 2 / var(--width);
+}
+
 .taskbar {
   grid-column: 1 / end;
   grid-row-start: var(--height);
   height: 30px;
   background: white;
   align-self: end;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.taskbarRight > * {
+  padding-left: 10px;
+}
+
+.credits {
+  grid-row: var(--height) / end;
+  grid-column: var(--width) / end;
 }

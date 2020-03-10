@@ -1,13 +1,15 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import "./DesktopIcon.css";
+import styles from "./DesktopIcon.module.css";
 
 class DesktopIcon extends React.Component {
   render() {
+    const { className } = this.props;
+
     return (
-      <div className="iconContainer">
-        <FontAwesomeIcon className="icon" icon={this.props.icon} />
-        <span className="name">{this.props.name}</span>
+      <div className={styles.iconContainer + (className ? " " + className : "")} >
+        <FontAwesomeIcon className={styles.icon} icon={this.props.icon} />
+        <span className={styles.name}>{this.props.name}</span>
       </div>
     )
   }
