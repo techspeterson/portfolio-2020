@@ -1,5 +1,6 @@
 .windowContainer {
-  background: gray;
+  background: black;
+  color: white;
   width: 90%;
   height: 90%;
   padding: 0 3px 3px 3px;
@@ -16,12 +17,17 @@
   padding: 0 10px;
 }
 
-.windowControls > * {
+.windowControlIcon {
   margin-left: 10px;
+}
+
+.windowControlIcon:hover {
+  color: grey;
 }
 
 .windowInner {
   background: white;
+  color: black;
   flex-grow: 1;
   overflow: auto;
 }
