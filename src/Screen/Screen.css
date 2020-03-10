@@ -1,0 +1,20 @@
+.screen {
+  --width: 9;
+  --height: 7;
+
+  width: calc(var(--width) * 100px);
+  height: calc(var(--height) * 100px);
+  background: skyblue;
+  display: grid;
+  grid-template-columns: repeat(var(--width), 1fr);
+  grid-template-rows: repeat(var(--height), 1fr);
+  grid-auto-flow: column;
+}
+
+.taskbar {
+  grid-column: 1 / end;
+  grid-row-start: var(--height);
+  height: 30px;
+  background: white;
+  align-self: end;
+}
