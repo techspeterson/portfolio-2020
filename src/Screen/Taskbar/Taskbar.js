@@ -7,7 +7,8 @@ import { connect } from "react-redux";
 
 function mapStateToProps(state) {
   return {
-    currentWindows: state.currentWindows
+    currentWindows: state.currentWindows,
+    palette: state.palette
   };
 }
 
@@ -28,11 +29,11 @@ class Taskbar extends React.Component {
     return <FontAwesomeIcon icon={batteryIcon} />
   }
 
-  renderTaskbarWindows = () => {
+  renderTaskbarWindows = (palette) => {
     const { currentWindows } = this.props;
     if (currentWindows.length) {
       return currentWindows.map((window, index) => {
-        return <div key={index} className={styles.taskbarTab}>
+        return <div key={index} className={styles.taskbarTab} style={{ borderColor: palette.muted }}>
           <FontAwesomeIcon icon={window.icon} className={styles.tabIcon} />
           {window.title}
         </div>;
@@ -47,7 +48,7 @@ class Taskbar extends React.Component {
       <div className={styles.taskbar} style={{ color: palette.vibrant }}>
         <FontAwesomeIcon icon={["fab", "windows"]} />
         <div className={styles.taskbarTabs}>
-          {this.renderTaskbarWindows()}
+          {this.renderTaskbarWindows(palette)}
         </div>
         <div className={styles.taskbarRight}>
           <FontAwesomeIcon icon="wifi" />

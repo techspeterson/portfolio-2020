@@ -1,9 +1,11 @@
 import { createStore } from "redux";
+
 import windows from "./windows";
 
 const initialState = {
   currentWindows: [],
-  bgURL: undefined
+  bgURL: undefined,
+  palette: undefined
 }
 
 function openWindow(name) {
@@ -12,6 +14,10 @@ function openWindow(name) {
 
 function setBgURL(url) {
   return { type: "SET_BG_URL", url: url }
+}
+
+function setPalette(palette) {
+  return { type: "SET_PALETTE", palette: palette }
 }
 
 function reducer(state = initialState, action) {
@@ -35,6 +41,9 @@ function reducer(state = initialState, action) {
     case "SET_BG_URL":
       newState.bgURL = action.url;
       break;
+    case "SET_PALETTE":
+      newState.palette = action.palette;
+      break;
     default:
       break;
   }
@@ -44,4 +53,4 @@ function reducer(state = initialState, action) {
 
 export default createStore(reducer);
 
-export { openWindow, setBgURL };
+export { openWindow, setBgURL, setPalette };
