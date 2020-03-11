@@ -3,13 +3,17 @@ import { connect } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Clock from 'react-live-clock';
 import Battery from 'react-device-battery';
-import styles from "./Screen.module.css";
+import { Palette } from "react-palette";
 
+import styles from "./Screen.module.css";
 import DesktopIcon from "./DesktopIcon/DesktopIcon";
 import { openWindow } from "../store";
 
 function mapStateToProps(state) {
-  return { currentWindows: state.currentWindows };
+  return {
+    currentWindows: state.currentWindows,
+    bgURL: state.bgURL
+  };
 }
 
 const mapDispatchToProps = {
@@ -56,9 +60,9 @@ class Screen extends React.Component {
     }
   }
 
-  renderTaskbar = () => {
+  renderTaskbar = (palette) => {
     return (
-      <div className={styles.taskbar}>
+      <div className={styles.taskbar} style={{ color: palette.vibrant }}>
         <FontAwesomeIcon icon={["fab", "windows"]} />
         <div className={styles.taskbarTabs}>
           {this.renderTaskbarWindows()}
@@ -79,19 +83,23 @@ class Screen extends React.Component {
 
   render() {
     return (
-      <div
-        className={styles.desktop}
-        style={{ background: `url(${this.props.bgURL})` }}
-      >
-        <DesktopIcon icon="user" name="Profile" onClick={this.openAbout} />
-        <DesktopIcon icon="pencil-alt" name="Projects" />
-        <DesktopIcon icon="paper-plane" name="Contact" />
-        <div className={styles.windowContainer}>
-          {this.renderTopWindow()}
-        </div>
-        <DesktopIcon icon="code" name="Credits" className={styles.credits} />
-        {this.renderTaskbar()}
-      </div>
+      <Palette src={this.props.bgURL}>
+        {({ data, loading, error }) => (
+          <div
+            className={styles.desktop}
+            style={{ background: `url(${this.props.bgURL})` }}
+          >
+            <DesktopIcon icon="user" name="Profile" onClick={this.openAbout} colour={data.vibrant} />
+            <DesktopIcon icon="pencil-alt" name="Projects" colour={data.vibrant} />
+            <DesktopIcon icon="paper-plane" name="Contact" colour={data.vibrant} />
+            <div className={styles.windowContainer}>
+              {this.renderTopWindow()}
+            </div>
+            <DesktopIcon icon="code" name="Credits" className={styles.credits} colour={data.vibrant} />
+            {this.renderTaskbar(data)}
+          </div>
+        )}
+      </Palette>
     );
   }
 }

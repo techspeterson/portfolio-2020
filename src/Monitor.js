@@ -16,10 +16,6 @@ const mapDispatchToProps = {
 }
 
 class Monitor extends React.Component {
-  state = {
-    bgURL: null
-  }
-
   componentDidMount() {
     axios.get("https://picsum.photos/1000/700").then(res => {
       const id = res.headers["picsum-id"];
