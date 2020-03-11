@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Clock from 'react-live-clock';
 import Battery from 'react-device-battery';
-import axios from "axios";
 import styles from "./Screen.module.css";
 
 import DesktopIcon from "./DesktopIcon/DesktopIcon";
@@ -18,19 +17,6 @@ const mapDispatchToProps = {
 }
 
 class Screen extends React.Component {
-  state = {
-    bgURL: null
-  }
-
-  componentDidMount() {
-    axios.get("https://picsum.photos/1000/700").then(res => {
-      const id = res.headers["picsum-id"];
-      axios.get(`https://picsum.photos/id/${id}/info`).then(res => {
-        this.setState({ bgURL: `https://picsum.photos/id/${id}/1000/700` });
-      });
-    });
-  }
-
   openAbout = () => {
     this.props.openWindow("about");
   }
@@ -91,35 +77,20 @@ class Screen extends React.Component {
     );
   }
 
-  renderLoadingOrScreen = () => {
-    if (this.state.bgURL) {
-      return (
-        <div
-          className={styles.desktop}
-          style={{ background: `url(${this.state.bgURL})` }}
-        >
-          <DesktopIcon icon="user" name="Profile" onClick={this.openAbout} />
-          <DesktopIcon icon="pencil-alt" name="Projects" />
-          <DesktopIcon icon="paper-plane" name="Contact" />
-          <div className={styles.windowContainer}>
-            {this.renderTopWindow()}
-          </div>
-          <DesktopIcon icon="code" name="Credits" className={styles.credits} />
-          {this.renderTaskbar()}
-        </div>
-      )
-    }
-    else {
-      return (
-        <div>Loading...</div>
-      )
-    }
-  }
-
   render() {
     return (
-      <div className={styles.screenContainer}>
-        {this.renderLoadingOrScreen()}
+      <div
+        className={styles.desktop}
+        style={{ background: `url(${this.props.bgURL})` }}
+      >
+        <DesktopIcon icon="user" name="Profile" onClick={this.openAbout} />
+        <DesktopIcon icon="pencil-alt" name="Projects" />
+        <DesktopIcon icon="paper-plane" name="Contact" />
+        <div className={styles.windowContainer}>
+          {this.renderTopWindow()}
+        </div>
+        <DesktopIcon icon="code" name="Credits" className={styles.credits} />
+        {this.renderTaskbar()}
       </div>
     );
   }

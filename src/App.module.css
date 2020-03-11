@@ -1,0 +1,14 @@
+.monitor {
+  padding: 50px;
+  background: gray;
+  border-radius: 20px;
+}
+
+.screenContainer {
+  background: black;
+  --width: 10;
+  --height: 7;
+  --taskbar-height: 30px;
+  width: calc(var(--width) * 100px);
+  height: calc(var(--height) * 100px + var(--taskbar-height));
+}
