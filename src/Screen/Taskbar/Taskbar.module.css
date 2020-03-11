@@ -1,0 +1,33 @@
+.taskbar {
+  grid-column: 1 / end;
+  grid-row-start: calc(var(--height) + 1);
+  height: 100%;
+  background: white;
+  align-self: end;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.taskbarTabs {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+.taskbarTab {
+  width: 150px;
+  border: 1px solid gray;
+  margin-right: 2px;
+}
+
+.tabIcon {
+  padding: 0 10px;
+}
+
+.taskbarRight > * {
+  padding-left: 10px;
+}

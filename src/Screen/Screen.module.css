@@ -1,10 +1,15 @@
 .desktop {
-  background: skyblue;
+  background: white;
+  height: 100%;
+}
+
+.desktopInner {
   display: grid;
   grid-template-columns: repeat(var(--width), 1fr);
   grid-template-rows: repeat(var(--height), 1fr) var(--taskbar-height);
   grid-auto-flow: column;
   height: 100%;
+  backdrop-filter: saturate(0.8);
 }
 
 .windowContainer {
@@ -13,40 +18,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.taskbar {
-  grid-column: 1 / end;
-  grid-row-start: calc(var(--height) + 1);
-  height: 100%;
-  background: white;
-  align-self: end;
-  padding: 0 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.taskbarTabs {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-grow: 1;
-  margin-left: 20px;
-}
-
-.taskbarTab {
-  width: 150px;
-  border: 1px solid gray;
-  margin-right: 2px;
-}
-
-.tabIcon {
-  padding: 0 10px;
-}
-
-.taskbarRight > * {
-  padding-left: 10px;
 }
 
 .credits {
