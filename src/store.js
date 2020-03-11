@@ -1,23 +1,17 @@
-import React from "react";
 import { createStore } from "redux";
-import AboutMe from "./Screen/Windows/AboutMe";
-
-const windows = {
-  about: {
-    title: "about-me.pdf",
-    icon: "file-pdf",
-    component: <AboutMe title="about-me.pdf" />,
-    open: false,
-    maximised: false
-  }
-}
+import windows from "./windows";
 
 const initialState = {
-  currentWindows: []
+  currentWindows: [],
+  bgURL: undefined
 }
 
 function openWindow(name) {
   return { type: "OPEN_WINDOW", name: name }
+}
+
+function setBgURL(url) {
+  return { type: "SET_BG_URL", url: url }
 }
 
 function reducer(state = initialState, action) {
@@ -38,6 +32,9 @@ function reducer(state = initialState, action) {
       break;
     case "CLOSE_WINDOW":
       break;
+    case "SET_BG_URL":
+      newState.bgURL = action.url;
+      break;
     default:
       break;
   }
@@ -47,4 +44,4 @@ function reducer(state = initialState, action) {
 
 export default createStore(reducer);
 
-export { openWindow };
+export { openWindow, setBgURL };

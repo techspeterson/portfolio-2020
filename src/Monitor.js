@@ -1,9 +1,19 @@
 import React from 'react';
 import axios from "axios";
-import styles from './App.module.css';
+import { connect } from "react-redux";
 
+import styles from './App.module.css';
 import Screen from "./Screen/Screen";
 import StartupScreen from "./Screen/StartupScreen";
+import { setBgURL } from "./store";
+
+function mapStateToProps(state) {
+  return { bgURL: state.bgURL }
+}
+
+const mapDispatchToProps = {
+  setBgURL
+}
 
 class Monitor extends React.Component {
   state = {
@@ -14,15 +24,15 @@ class Monitor extends React.Component {
     axios.get("https://picsum.photos/1000/700").then(res => {
       const id = res.headers["picsum-id"];
       axios.get(`https://picsum.photos/id/${id}/info`).then(res => {
-        this.setState({ bgURL: `https://picsum.photos/id/${id}/1000/700` });
+        this.props.setBgURL(`https://picsum.photos/id/${id}/1000/700`);
       });
     });
   }
 
   renderScreen = () => {
-    if (this.state.bgURL) {
+    if (this.props.bgURL) {
       return (
-        <Screen bgURL={this.state.bgURL} />
+        <Screen bgURL={this.props.bgURL} />
       )
     }
     else {
@@ -43,4 +53,4 @@ class Monitor extends React.Component {
   }
 }
 
-export default Monitor;
+export default connect(mapStateToProps, mapDispatchToProps)(Monitor);
