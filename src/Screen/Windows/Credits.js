@@ -17,7 +17,7 @@ class Credits extends React.Component {
       <Window title={this.props.title} style={{ width: "60%", height: "unset" }}>
         &copy; Tessa Peterson 2020<br />
         Built in React<br />
-        Desktop background by <Link href={bgInfo.url}>{bgInfo.author}</Link> on <Link href="https://unsplash.com/">Unsplash</Link> (randomly generated with <Link href="https://picsum.photos/">Lorem Picsum</Link>)
+        Randomly generated desktop background by <Link href={bgInfo.url}>{bgInfo.author}</Link> on <Link href="https://unsplash.com/">Unsplash</Link>
       </Window>
     );
   }
