@@ -23,7 +23,7 @@ class Window extends React.Component {
 
   render() {
     return (
-      <div className={styles.windowContainer} style={{ background: this.props.palette.vibrant }}>
+      <div className={styles.windowContainer} style={Object.assign({}, { background: this.props.palette.vibrant }, this.props.style)}>
         <div className={styles.topBar}>
           <span>{this.props.title}</span>
           <div className={styles.windowControls}>

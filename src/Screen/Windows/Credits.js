@@ -5,18 +5,18 @@ import Link from "../Components/Link";
 
 function mapStateToProps(state) {
   return {
-    bgInfo: state.bgInfo,
-    palette: state.palette
+    bgInfo: state.bgInfo
   }
 }
 
 class Credits extends React.Component {
   render() {
-    const { bgInfo, palette } = this.props;
+    const { bgInfo } = this.props;
 
     return (
-      <Window title={this.props.title}>
+      <Window title={this.props.title} style={{ width: "60%", height: "unset" }}>
         &copy; Tessa Peterson 2020<br />
+        Built in React<br />
         Desktop background by <Link href={bgInfo.url}>{bgInfo.author}</Link> on <Link href="https://unsplash.com/">Unsplash</Link> (randomly generated with <Link href="https://picsum.photos/">Lorem Picsum</Link>)
       </Window>
     );
