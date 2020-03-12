@@ -12,6 +12,10 @@ function openWindow(name) {
   return { type: "OPEN_WINDOW", name: name }
 }
 
+function closeWindow() {
+  return { type: "CLOSE_WINDOW" }
+}
+
 function setBgURL(url) {
   return { type: "SET_BG_URL", url: url }
 }
@@ -22,13 +26,12 @@ function setPalette(palette) {
 
 function reducer(state = initialState, action) {
   let newState = { ...state };
+  let newWindows = [...state.currentWindows];
 
   switch (action.type) {
     case "OPEN_WINDOW":
-      let newWindows = [...state.currentWindows];
       let window = windows[action.name];
       window.open = true;
-      window.maximised = true;
       newWindows.push(window);
       newState.currentWindows = newWindows;
       break;
@@ -37,6 +40,8 @@ function reducer(state = initialState, action) {
     case "MAXIMISE_WINDOW":
       break;
     case "CLOSE_WINDOW":
+      newWindows.pop();
+      newState.currentWindows = newWindows;
       break;
     case "SET_BG_URL":
       newState.bgURL = action.url;
@@ -53,4 +58,4 @@ function reducer(state = initialState, action) {
 
 export default createStore(reducer);
 
-export { openWindow, setBgURL, setPalette };
+export { openWindow, closeWindow, setBgURL, setPalette };

@@ -1,13 +1,15 @@
 import React from "react";
 import AboutMe from "./Screen/Windows/AboutMe";
 
+const aboutTitle = "about-me.pdf";
+
 const windows = {
   about: {
-    title: "about-me.pdf",
+    title: aboutTitle,
     icon: "file-pdf",
-    component: <AboutMe title="about-me.pdf" />,
+    component: <AboutMe title={aboutTitle} />,
     open: false,
-    maximised: false
+    minimised: false
   }
 }
 

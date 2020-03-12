@@ -1,18 +1,24 @@
 import React from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { connect } from "react-redux";
 import styles from "./Window.module.css";
+import { closeWindow } from "../../store";
+import WindowButton from "./WindowButton";
 
 function mapStateToProps(state) {
   return {
     bgURL: state.bgURL,
-    palette: state.palette
+    palette: state.palette,
+    currentWindows: state.currentWindows
   }
+}
+
+const mapDispatchToProps = {
+  closeWindow
 }
 
 class Window extends React.Component {
   onClick = () => {
-    console.log("closing!");
+    this.props.closeWindow();
   }
 
   render() {
@@ -21,9 +27,9 @@ class Window extends React.Component {
         <div className={styles.topBar}>
           <span>{this.props.title}</span>
           <div className={styles.windowControls}>
-            <FontAwesomeIcon icon="window-minimize" className={styles.windowControlIcon} />
-            <FontAwesomeIcon icon="window-maximize" className={styles.windowControlIcon} />
-            <FontAwesomeIcon icon="window-close" className={styles.windowControlIcon} onClick={this.onClick} />
+            <WindowButton icon="window-minimize" />
+            <WindowButton icon="window-maximize" />
+            <WindowButton icon="window-close" onClick={this.onClick} />
           </div>
         </div>
         <div className={styles.windowInner}>
@@ -34,4 +40,4 @@ class Window extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(Window);
+export default connect(mapStateToProps, mapDispatchToProps)(Window);

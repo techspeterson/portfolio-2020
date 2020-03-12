@@ -7,16 +7,19 @@
   align-items: center;
 }
 
-.iconContainer:hover {
+/* .iconContainer:hover {
   background: rgba(255, 255, 255, 0.2);
-}
+} */
 
 .icon {
   font-size: 30px;
+  color: white;
+  padding: 5px 5px 0 5px;
 }
 
 .name {
   color: white;
-  text-shadow: -1px 1px 2px rgba(0,0,0,0.75);
+  /* text-shadow: -1px 1px 2px rgba(0,0,0,0.75); */
   font-weight: bold;
+  padding: 0 5px;
 }

@@ -24,7 +24,7 @@ class Screen extends React.Component {
     this.props.setPalette(this.props.paletteProp)
   }
 
-  openAbout = (palette) => {
+  openAbout = () => {
     this.props.openWindow("about");
   }
 
