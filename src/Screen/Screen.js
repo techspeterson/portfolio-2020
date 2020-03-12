@@ -9,7 +9,7 @@ import { openWindow, setPalette } from "../store";
 function mapStateToProps(state) {
   return {
     currentWindows: state.currentWindows,
-    bgURL: state.bgURL,
+    // bgURL: state.bgURL,
     palette: state.palette
   };
 }
@@ -26,6 +26,10 @@ class Screen extends React.Component {
 
   openAbout = () => {
     this.props.openWindow("about");
+  }
+
+  openCredits = () => {
+    this.props.openWindow("credits");
   }
 
   renderTopWindow = () => {
@@ -46,7 +50,7 @@ class Screen extends React.Component {
           <div className={styles.windowContainer}>
             {this.renderTopWindow()}
           </div>
-          <DesktopIcon icon="code" name="Credits" className={styles.credits} colour={palette.vibrant} />
+          <DesktopIcon icon="code" name="Credits" onClick={this.openCredits} className={styles.credits} colour={palette.vibrant} />
           <Taskbar />
         </div>
       )

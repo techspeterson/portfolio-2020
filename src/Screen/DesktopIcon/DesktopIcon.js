@@ -15,9 +15,7 @@ class DesktopIcon extends React.Component {
   }
 
   toggleHover = () => {
-    console.log("toggle");
     const { palette } = this.props;
-    console.log(this.state.colour)
 
     if (this.state.colour === palette.vibrant) {
       this.setState({ colour: palette.muted })

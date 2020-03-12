@@ -6,7 +6,7 @@ import { Palette } from 'react-palette'
 import styles from './App.module.css';
 import Screen from "./Screen/Screen";
 import StartupScreen from "./Screen/StartupScreen";
-import { setBgURL, setPalette } from "./store";
+import { setBgInfo, setPalette } from "./store";
 
 function mapStateToProps(state) {
   return {
@@ -16,17 +16,22 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  setBgURL,
+  setBgInfo,
   setPalette
 }
 
 class Monitor extends React.Component {
+  state = {
+    bgURL: null
+  }
+
   componentDidMount() {
     axios.get("https://picsum.photos/1000/700").then(res => {
       const id = res.headers["picsum-id"];
       axios.get(`https://picsum.photos/id/${id}/info`).then(res => {
         const url = `https://picsum.photos/id/${id}/1000/700`;
-        this.props.setBgURL(url);
+        this.setState({ bgURL: url });
+        this.props.setBgInfo(res.data);
       });
     });
   }
@@ -38,7 +43,7 @@ class Monitor extends React.Component {
   }
 
   renderScreen = () => {
-    const { bgURL } = this.props;
+    const { bgURL } = this.state;
 
     if (bgURL) {
       return (

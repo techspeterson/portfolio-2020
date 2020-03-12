@@ -5,7 +5,7 @@ import Window from "../Window/Window";
 class AboutMe extends React.Component {
   render() {
     return (
-      <Window title="about-me.pdf">
+      <Window title={this.props.title}>
         bla bla bla
       </Window>
     );

@@ -13,6 +13,10 @@ function mapStateToProps(state) {
 }
 
 class Taskbar extends React.Component {
+  state = {
+    batteryLevel: null
+  }
+
   renderBattery = ({ battery }) => {
     let batteryIcon = "battery-";
     if (battery < 5) {
@@ -26,7 +30,7 @@ class Taskbar extends React.Component {
     } else {
       batteryIcon += "full"
     }
-    return <FontAwesomeIcon icon={batteryIcon} />
+    return <FontAwesomeIcon icon={batteryIcon} title={this.state.batteryLevel + "%"} />
   }
 
   renderTaskbarWindows = (palette) => {
@@ -46,7 +50,7 @@ class Taskbar extends React.Component {
 
     return (
       <div className={styles.taskbar} style={{ color: palette.vibrant }}>
-        <FontAwesomeIcon icon={["fab", "windows"]} />
+        <FontAwesomeIcon icon="star" />
         <div className={styles.taskbarTabs}>
           {this.renderTaskbarWindows(palette)}
         </div>
@@ -55,10 +59,10 @@ class Taskbar extends React.Component {
           <Battery
             render={this.renderBattery}
             onChange={(battery) => {
-              console.log(battery)
+              this.setState({ batteryLevel: battery });
             }}
           />
-          <Clock format={"h:mm A"} ticking={true} />
+          <Clock format={"h:mm A"} ticking={true} title={new Date().toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric", year: "numeric" })} />
         </div>
       </div>
     )

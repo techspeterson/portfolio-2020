@@ -4,7 +4,7 @@ import windows from "./windows";
 
 const initialState = {
   currentWindows: [],
-  bgURL: undefined,
+  bgInfo: undefined,
   palette: undefined
 }
 
@@ -16,8 +16,8 @@ function closeWindow() {
   return { type: "CLOSE_WINDOW" }
 }
 
-function setBgURL(url) {
-  return { type: "SET_BG_URL", url: url }
+function setBgInfo(data) {
+  return { type: "SET_BG_INFO", data: data }
 }
 
 function setPalette(palette) {
@@ -43,8 +43,8 @@ function reducer(state = initialState, action) {
       newWindows.pop();
       newState.currentWindows = newWindows;
       break;
-    case "SET_BG_URL":
-      newState.bgURL = action.url;
+    case "SET_BG_INFO":
+      newState.bgInfo = action.data;
       break;
     case "SET_PALETTE":
       newState.palette = action.palette;
@@ -58,4 +58,4 @@ function reducer(state = initialState, action) {
 
 export default createStore(reducer);
 
-export { openWindow, closeWindow, setBgURL, setPalette };
+export { openWindow, closeWindow, setBgInfo, setPalette };
