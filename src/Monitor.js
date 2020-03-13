@@ -7,6 +7,7 @@ import styles from './App.module.css';
 import Screen from "./Screen/Screen";
 import StartupScreen from "./Screen/StartupScreen";
 import { setBgInfo, setPalette } from "./store";
+import defaultBg from "./assets/photo-1419242902214-272b3f66ee7a.jpg";
 
 function mapStateToProps(state) {
   return {
@@ -25,22 +26,20 @@ class Monitor extends React.Component {
     bgURL: null
   }
 
-  // componentDidMount() {
-  //   axios.get("https://picsum.photos/1000/700").then(res => {
-  //     const id = res.headers["picsum-id"];
-  //     axios.get(`https://picsum.photos/id/${id}/info`).then(res => {
-  //       const url = `https://picsum.photos/id/${id}/1000/700`;
-  //       this.setState({ bgURL: url });
-  //       this.props.setBgInfo(res.data);
-  //     });
-  //   });
-  // }
   componentDidMount() {
-    axios.get(`${process.env.REACT_APP_SERVER_URL}/bg`).then(res => {
+    axios({ url: `${process.env.REACT_APP_SERVER_URL}/bg`, timeout: 2000 }).then(res => {
       console.log("received")
       this.setState({ bgURL: res.data.imageURL + "&fm=jpg&w=1000&h=700&fit=crop" });
       this.props.setBgInfo(res.data);
     })
+      .catch(err => {
+        console.log("error retrieving bg. using default");
+        this.setState({ bgURL: defaultBg });
+        this.props.setBgInfo({
+          url: "https://unsplash.com/photos/ln5drpv_ImI",
+          author: "Vincentiu Solomon"
+        });
+      });
   }
 
   renderScreenWithPalette = (palette, bgURL) => {

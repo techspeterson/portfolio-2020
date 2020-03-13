@@ -18,7 +18,7 @@ class WindowButton extends React.Component {
 
   toggleHover = () => {
     if (this.state.colour === "white") {
-      this.setState({ colour: this.props.palette.muted })
+      this.setState({ colour: this.props.palette.lightVibrant })
     }
     else {
       this.setState({ colour: "white" })

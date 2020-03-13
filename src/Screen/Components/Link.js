@@ -15,7 +15,7 @@ function Link(props) {
   color: ${palette.vibrant};
 
   &:hover {
-    color: ${palette.muted};
+    color: ${palette.lightVibrant};
   }
   `;
 

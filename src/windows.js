@@ -11,13 +11,15 @@ const windows = {
     icon: "file-pdf",
     component: <AboutMe title={aboutTitle} />,
     open: false,
+    active: false,
     minimised: false
   },
   credits: {
     title: creditsTitle,
-    icon: "file-pdf",
+    icon: "file",
     component: <Credits title={creditsTitle} />,
     open: false,
+    active: false,
     minimised: false
   }
 }

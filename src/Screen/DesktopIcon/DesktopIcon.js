@@ -18,7 +18,7 @@ class DesktopIcon extends React.Component {
     const { palette } = this.props;
 
     if (this.state.colour === palette.vibrant) {
-      this.setState({ colour: palette.muted })
+      this.setState({ colour: palette.darkVibrant })
     }
     else {
       this.setState({ colour: palette.vibrant })
