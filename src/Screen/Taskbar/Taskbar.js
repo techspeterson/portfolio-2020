@@ -41,7 +41,6 @@ class Taskbar extends React.Component {
   }
 
   changeActive = (index) => (event) => {
-    console.log(index);
     this.props.setActiveWindow(index);
   }
 

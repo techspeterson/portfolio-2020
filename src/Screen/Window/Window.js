@@ -16,8 +16,8 @@ const mapDispatchToProps = {
 }
 
 class Window extends React.Component {
-  onClick = () => {
-    this.props.closeWindow();
+  closeWindow = () => {
+    this.props.closeWindow(this.props.index);
   }
 
   render() {
@@ -30,7 +30,7 @@ class Window extends React.Component {
           <div className={styles.windowControls}>
             <WindowButton icon="window-minimize" />
             <WindowButton icon="window-maximize" />
-            <WindowButton icon="window-close" onClick={this.onClick} />
+            <WindowButton icon="window-close" onClick={this.closeWindow} />
           </div>
         </div>
         <div className={styles.windowInner}>

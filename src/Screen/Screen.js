@@ -25,12 +25,8 @@ class Screen extends React.Component {
     this.props.setPalette(this.props.paletteProp)
   }
 
-  openAbout = () => {
-    this.props.openWindow("about");
-  }
-
-  openCredits = () => {
-    this.props.openWindow("credits");
+  openWindow = (window) => (event) => {
+    this.props.openWindow(window);
   }
 
   renderTopWindow = () => {
@@ -38,7 +34,7 @@ class Screen extends React.Component {
     if (currentWindows.length) {
       const activeWindow = currentWindows.find(window => window.active);
       return (
-        <Window windowObj={activeWindow} />
+        <Window windowObj={activeWindow} index={currentWindows.indexOf(activeWindow)} />
       )
     }
   }
@@ -48,13 +44,13 @@ class Screen extends React.Component {
     if (palette) {
       return (
         <div className={styles.desktopInner}>
-          <DesktopIcon icon="user" name="Profile" onClick={this.openAbout} colour={palette.vibrant} />
+          <DesktopIcon icon="user" name="Profile" onClick={this.openWindow("about")} colour={palette.vibrant} />
           <DesktopIcon icon="pencil-alt" name="Projects" colour={palette.vibrant} />
           <DesktopIcon icon="paper-plane" name="Contact" colour={palette.vibrant} />
           <div className={styles.windowContainer}>
             {this.renderTopWindow()}
           </div>
-          <DesktopIcon icon="code" name="Credits" onClick={this.openCredits} className={styles.credits} colour={palette.vibrant} />
+          <DesktopIcon icon="code" name="Credits" onClick={this.openWindow("credits")} className={styles.credits} colour={palette.vibrant} />
           <Taskbar />
         </div>
       )

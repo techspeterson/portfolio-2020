@@ -12,8 +12,8 @@ function openWindow(name) {
   return { type: "OPEN_WINDOW", name: name }
 }
 
-function closeWindow() {
-  return { type: "CLOSE_WINDOW" }
+function closeWindow(index) {
+  return { type: "CLOSE_WINDOW", index: index }
 }
 
 function setBgInfo(data) {
@@ -53,7 +53,7 @@ function reducer(state = initialState, action) {
       newState.currentWindows = newWindows;
       break;
     case "CLOSE_WINDOW":
-      newWindows.pop();
+      newWindows.splice(action.index, 1);
       if (newWindows.length) {
         newWindows[newWindows.length - 1].active = true;
       }
