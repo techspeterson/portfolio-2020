@@ -34,7 +34,7 @@ function reducer(state = initialState, action) {
 
   switch (action.type) {
     case "OPEN_WINDOW":
-      let window = windows[action.name];
+      let window = Object.create(windows[action.name]);
       window.open = true;
       newWindows = newWindows.map(window => {
         window.active = false;
