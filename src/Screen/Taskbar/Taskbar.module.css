@@ -24,6 +24,10 @@
   margin-right: 2px;
 }
 
+.taskbarTab:hover {
+  cursor: pointer;
+}
+
 .tabIcon {
   padding: 0 10px;
 }

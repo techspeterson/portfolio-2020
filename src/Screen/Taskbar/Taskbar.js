@@ -6,12 +6,17 @@ import Battery from 'react-device-battery';
 import { connect } from "react-redux";
 
 import TaskbarTab from "./TaskbarTab";
+import { setActiveWindow } from "../../store";
 
 function mapStateToProps(state) {
   return {
     currentWindows: state.currentWindows,
     palette: state.palette
   };
+}
+
+const mapDispatchToProps = {
+  setActiveWindow
 }
 
 class Taskbar extends React.Component {
@@ -35,14 +40,9 @@ class Taskbar extends React.Component {
     return <FontAwesomeIcon icon={batteryIcon} title={this.state.batteryLevel + "%"} />
   }
 
-  hexWithOpacity = (isActive) => {
-    if (isActive) {
-      // return "#66" + this.props.palette.lightMuted.slice(2);
-      return this.props.palette.vibrant + "50";
-    }
-    else {
-      return "white"
-    }
+  changeActive = (index) => (event) => {
+    console.log(index);
+    this.props.setActiveWindow(index);
   }
 
   renderTaskbarWindows = () => {
@@ -50,7 +50,7 @@ class Taskbar extends React.Component {
 
     if (currentWindows.length) {
       return currentWindows.map((window, index) => {
-        return <TaskbarTab key={index} window={window}>
+        return <TaskbarTab key={index} window={window} onClick={this.changeActive(index)}>
           <FontAwesomeIcon icon={window.icon} className={styles.tabIcon} />
           {window.title}
         </TaskbarTab>;
@@ -82,4 +82,4 @@ class Taskbar extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(Taskbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Taskbar);

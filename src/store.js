@@ -24,6 +24,10 @@ function setPalette(palette) {
   return { type: "SET_PALETTE", palette: palette }
 }
 
+function setActiveWindow(index) {
+  return { type: "SET_ACTIVE_WINDOW", index: index }
+}
+
 function reducer(state = initialState, action) {
   let newState = { ...state };
   let newWindows = [...state.currentWindows];
@@ -40,9 +44,13 @@ function reducer(state = initialState, action) {
       newWindows.push(window);
       newState.currentWindows = newWindows;
       break;
-    case "MINIMISE_WINDOW":
-      break;
-    case "MAXIMISE_WINDOW":
+    case "SET_ACTIVE_WINDOW":
+      newWindows = newWindows.map(window => {
+        window.active = false;
+        return window;
+      });
+      newWindows[action.index].active = true;
+      newState.currentWindows = newWindows;
       break;
     case "CLOSE_WINDOW":
       newWindows.pop();
@@ -66,4 +74,4 @@ function reducer(state = initialState, action) {
 
 export default createStore(reducer);
 
-export { openWindow, closeWindow, setBgInfo, setPalette };
+export { openWindow, setActiveWindow, closeWindow, setBgInfo, setPalette };

@@ -36,9 +36,9 @@ class Screen extends React.Component {
   renderTopWindow = () => {
     const { currentWindows } = this.props;
     if (currentWindows.length) {
-      const topWindow = currentWindows[currentWindows.length - 1];
+      const activeWindow = currentWindows.find(window => window.active);
       return (
-        <Window windowObj={topWindow} />
+        <Window windowObj={activeWindow} />
       )
     }
   }

@@ -25,11 +25,14 @@ function TaskbarTab(props) {
   const Tab = styled.div`
   border-color: ${palette.muted};
   background: ${bg};
+
+  &:hover {
+    background: ${palette.lightVibrant};
+  }
   `
 
   return (
-    <Tab
-      className={styles.taskbarTab}>
+    <Tab className={styles.taskbarTab} onClick={props.onClick}>
       <FontAwesomeIcon icon={window.icon} className={styles.tabIcon} />
       {window.title}
     </Tab>
