@@ -25,8 +25,8 @@ const windows = {
     style: { width: "60%", height: "unset" }
   },
   contact: {
-    title: "Mail - Contact",
-    icon: "file",
+    title: "Inbox - Contact",
+    icon: "envelope",
     component: <Contact />,
     open: false,
     active: false,
