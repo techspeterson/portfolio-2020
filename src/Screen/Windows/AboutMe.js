@@ -1,13 +1,11 @@
 import React from "react";
 
-import Window from "../Window/Window";
-
 class AboutMe extends React.Component {
   render() {
     return (
-      <Window title={this.props.title}>
+      <div>
         bla bla bla
-      </Window>
+      </div>
     );
   }
 }

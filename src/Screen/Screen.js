@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import styles from "./Screen.module.css";
 import DesktopIcon from "./DesktopIcon/DesktopIcon";
 import Taskbar from "./Taskbar/Taskbar";
+import Window from "./Window/Window";
 import { openWindow, setPalette } from "../store";
 
 function mapStateToProps(state) {
@@ -35,7 +36,10 @@ class Screen extends React.Component {
   renderTopWindow = () => {
     const { currentWindows } = this.props;
     if (currentWindows.length) {
-      return currentWindows[currentWindows.length - 1].component;
+      const topWindow = currentWindows[currentWindows.length - 1];
+      return (
+        <Window windowObj={topWindow} />
+      )
     }
   }
 

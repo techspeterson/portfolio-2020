@@ -32,6 +32,11 @@ function reducer(state = initialState, action) {
     case "OPEN_WINDOW":
       let window = windows[action.name];
       window.open = true;
+      newWindows = newWindows.map(window => {
+        window.active = false;
+        return window;
+      });
+      window.active = true;
       newWindows.push(window);
       newState.currentWindows = newWindows;
       break;
@@ -41,6 +46,9 @@ function reducer(state = initialState, action) {
       break;
     case "CLOSE_WINDOW":
       newWindows.pop();
+      if (newWindows.length) {
+        newWindows[newWindows.length - 1].active = true;
+      }
       newState.currentWindows = newWindows;
       break;
     case "SET_BG_INFO":

@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import Window from "../Window/Window";
 import Link from "../Components/Link";
 
 function mapStateToProps(state) {
@@ -14,11 +13,11 @@ class Credits extends React.Component {
     const { bgInfo } = this.props;
 
     return (
-      <Window title={this.props.title} style={{ width: "60%", height: "unset" }}>
+      <div>
         &copy; Tessa Peterson 2020<br />
         Built in React<br />
         Randomly generated desktop background by <Link href={bgInfo.url}>{bgInfo.author}</Link> on <Link href="https://unsplash.com/">Unsplash</Link>
-      </Window>
+      </div>
     );
   }
 }

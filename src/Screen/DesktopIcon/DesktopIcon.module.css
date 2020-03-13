@@ -7,9 +7,9 @@
   align-items: center;
 }
 
-/* .iconContainer:hover {
-  background: rgba(255, 255, 255, 0.2);
-} */
+.iconContainer:hover {
+  cursor: pointer;
+}
 
 .icon {
   font-size: 30px;

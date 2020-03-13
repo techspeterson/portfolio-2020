@@ -5,6 +5,8 @@ import Clock from 'react-live-clock';
 import Battery from 'react-device-battery';
 import { connect } from "react-redux";
 
+import TaskbarTab from "./TaskbarTab";
+
 function mapStateToProps(state) {
   return {
     currentWindows: state.currentWindows,
@@ -33,14 +35,25 @@ class Taskbar extends React.Component {
     return <FontAwesomeIcon icon={batteryIcon} title={this.state.batteryLevel + "%"} />
   }
 
-  renderTaskbarWindows = (palette) => {
+  hexWithOpacity = (isActive) => {
+    if (isActive) {
+      // return "#66" + this.props.palette.lightMuted.slice(2);
+      return this.props.palette.vibrant + "50";
+    }
+    else {
+      return "white"
+    }
+  }
+
+  renderTaskbarWindows = () => {
     const { currentWindows } = this.props;
+
     if (currentWindows.length) {
       return currentWindows.map((window, index) => {
-        return <div key={index} className={styles.taskbarTab} style={{ borderColor: palette.muted }}>
+        return <TaskbarTab key={index} window={window}>
           <FontAwesomeIcon icon={window.icon} className={styles.tabIcon} />
           {window.title}
-        </div>;
+        </TaskbarTab>;
       });
     }
   }
@@ -49,10 +62,10 @@ class Taskbar extends React.Component {
     const { palette } = this.props;
 
     return (
-      <div className={styles.taskbar} style={{ color: palette.vibrant }}>
+      <div className={styles.taskbar} style={{ color: palette.darkVibrant }}>
         <FontAwesomeIcon icon="star" />
         <div className={styles.taskbarTabs}>
-          {this.renderTaskbarWindows(palette)}
+          {this.renderTaskbarWindows()}
         </div>
         <div className={styles.taskbarRight}>
           <FontAwesomeIcon icon="wifi" />

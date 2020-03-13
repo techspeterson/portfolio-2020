@@ -6,7 +6,6 @@ import WindowButton from "./WindowButton";
 
 function mapStateToProps(state) {
   return {
-    bgURL: state.bgURL,
     palette: state.palette,
     currentWindows: state.currentWindows
   }
@@ -22,10 +21,12 @@ class Window extends React.Component {
   }
 
   render() {
+    const { windowObj } = this.props;
+
     return (
-      <div className={styles.windowContainer} style={Object.assign({}, { background: this.props.palette.vibrant }, this.props.style)}>
+      <div className={styles.windowContainer} style={Object.assign({}, { background: this.props.palette.vibrant }, windowObj.style)}>
         <div className={styles.topBar}>
-          <span>{this.props.title}</span>
+          <span>{windowObj.title}</span>
           <div className={styles.windowControls}>
             <WindowButton icon="window-minimize" />
             <WindowButton icon="window-maximize" />
@@ -33,7 +34,7 @@ class Window extends React.Component {
           </div>
         </div>
         <div className={styles.windowInner}>
-          {this.props.children}
+          {windowObj.component}
         </div>
       </div>
     );
