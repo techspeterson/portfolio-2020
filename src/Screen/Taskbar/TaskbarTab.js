@@ -13,18 +13,21 @@ function mapStateToProps(state) {
 function TaskbarTab(props) {
   const { window, palette } = props;
 
-  let bg;
+  let colour;
+  let weight;
   if (window.active) {
-    // return "#66" + this.props.palette.lightMuted.slice(2);
-    bg = palette.vibrant + "50";
+    colour = palette.vibrant;
+    weight = 500;
   }
   else {
-    bg = "white";
+    colour = palette.darkVibrant;
+    weight = "normal";
   }
 
   const Tab = styled.div`
   border-color: ${palette.muted};
-  background: ${bg};
+  color: ${colour};
+  font-weight: ${weight};
 
   &:hover {
     background: ${palette.lightVibrant};

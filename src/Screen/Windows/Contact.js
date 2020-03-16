@@ -21,6 +21,23 @@ class Contact extends React.Component {
     this.setState({ activeTab: tab });
   }
 
+  tabStyle = (tab) => {
+    const { palette } = this.props;
+
+    if (tab === this.state.activeTab) {
+      return {
+        color: palette.darkVibrant,
+        fontWeight: "bold",
+        background: palette.lightVibrant
+      }
+    }
+    else {
+      return {
+        color: palette.vibrant
+      }
+    }
+  }
+
   renderTab = () => {
     let tabContent;
     const { palette } = this.props;
@@ -38,14 +55,16 @@ class Contact extends React.Component {
         </ul>
         break;
       case "twitter":
-        tabContent = <TwitterTimelineEmbed
-          sourceType="profile"
-          screenName="techspeterson"
-          borderColor={palette.vibrant}
-          linkColor={palette.darkVibrant}
-          options={{ tweetLimit: 20 }}
-          placeholder={<FontAwesomeIcon icon="atom" color={palette.vibrant} spin />}
-        />
+        tabContent = <div className={styles.contentBottom}>
+          <TwitterTimelineEmbed
+            sourceType="profile"
+            screenName="techspeterson"
+            borderColor={palette.vibrant}
+            linkColor={palette.darkVibrant}
+            options={{ tweetLimit: 20 }}
+            placeholder={<FontAwesomeIcon icon="atom" color={palette.vibrant} className={styles.spinner} spin />}
+          />
+        </div>
         break;
       default:
         break;
@@ -60,19 +79,28 @@ class Contact extends React.Component {
       <div className={styles.container}>
         <div className={styles.list} style={{ borderColor: palette.vibrant }}>
           <ul>
-            <li onClick={this.switchTab("email")}>
+            <li onClick={this.switchTab("email")} style={this.tabStyle("email")}>
               <FontAwesomeIcon icon="envelope" className={styles.listIcon} />
               Compose Email
               </li>
-            <li onClick={this.switchTab("links")}>
+            <li onClick={this.switchTab("links")} style={this.tabStyle("links")}>
               <FontAwesomeIcon icon="external-link-square-alt" className={styles.listIcon} />
               Links</li>
-            <li onClick={this.switchTab("twitter")}>
+            <li onClick={this.switchTab("twitter")} style={this.tabStyle("twitter")}>
               <FontAwesomeIcon icon={["fab", "twitter"]} className={styles.listIcon} />
               Twitter</li>
           </ul>
         </div>
         <div className={styles.content}>
+          <div className={styles.topBar} style={{ color: palette.darkVibrant, borderColor: palette.vibrant }}>
+            <FontAwesomeIcon icon="reply" />
+            <FontAwesomeIcon icon="reply-all" />
+            <FontAwesomeIcon icon="reply" flip="horizontal" />
+            <FontAwesomeIcon icon="times" className={styles.greyedOut} />
+            <FontAwesomeIcon icon="trash-alt" className={styles.greyedOut} />
+            <FontAwesomeIcon icon="star" />
+            <FontAwesomeIcon icon="print" />
+          </div>
           {this.renderTab()}
         </div>
       </div>

@@ -26,7 +26,15 @@ const windows = {
   },
   contact: {
     title: "Inbox - Contact",
-    icon: "envelope",
+    icon: "inbox",
+    component: <Contact />,
+    open: false,
+    active: false,
+    minimised: false
+  },
+  projects: {
+    title: "Explorer - Projects",
+    icon: "inbox",
     component: <Contact />,
     open: false,
     active: false,

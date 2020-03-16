@@ -4,12 +4,6 @@
   height: 100%;
 }
 
-.topBar {
-  width: 100%;
-  border-bottom: 1px;
-  border-style: solid;
-}
-
 .bottomContainer {
   display: flex;
   flex-grow: 1;
@@ -18,7 +12,7 @@
 .list {
   width: 200px;
   overflow: auto;
-  border-width: 0 1px 0 0;
+  border-width: 0 2px 0 0;
   border-style: solid;
 }
 
@@ -48,13 +42,14 @@
 .content {
   height: 100%;
   flex-grow: 1;
-  overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .links {
   list-style-type: none;
   padding: 0;
-  font-size: 1.4em;
+  font-size: 1.5em;
 }
 
 .links li {
@@ -97,4 +92,32 @@
 
 .submit {
   flex-grow: 0;
+}
+
+.topBar {
+  width: 100%;
+  height: 50px;
+  border-width: 0 0 2px 0;
+  border-style: solid;
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+  flex-shrink: 0;
+}
+
+.topBar > * {
+  margin: 0 10px;
+}
+
+.contentBottom {
+  overflow: auto;
+}
+
+.greyedOut {
+  opacity: 0.5;
+}
+
+.spinner {
+  font-size: 3em;
+  padding: 20px;
 }
