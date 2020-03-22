@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { ReactSVG } from 'react-svg'
 import styles from "./Projects.module.css";
 import Link from "../Components/Link";
 import { H2 } from "../Components/Headers"
@@ -15,7 +16,7 @@ function mapStateToProps(state) {
 
 class Projects extends React.Component {
   state = {
-    activeTab: "werewolf"
+    activeTab: projects[0].id
   }
 
   switchTab = (tab) => (event) => {
@@ -40,9 +41,29 @@ class Projects extends React.Component {
   }
 
   renderTechIcons = (project) => {
-    return project.techs.map(tech => {
-      return <FontAwesomeIcon icon={["fab", tech]} className={styles.icon} color={this.props.palette.vibrant} />
-    });
+    const { palette } = this.props;
+
+    return (
+      <div>
+        {project.techs.map(tech => {
+          if (tech[1]) {
+            return <FontAwesomeIcon icon={["fab", tech[1]]} className={styles.icon} color={palette.vibrant} key={tech[1]} title={tech[0]} />
+          }
+          else {
+            return <ReactSVG
+              src={tech[2]}
+              wrapper="span"
+              beforeInjection={svg => {
+                const path = svg.getElementsByTagName("path")[0]
+                path.setAttribute("style", `fill: ${palette.vibrant}`);
+                svg.classList.add(styles.iconSvg);
+                svg.setAttribute("style", "height: 2em");
+              }}
+            />;
+          }
+        })}
+      </div>
+    )
   }
 
   renderTab = () => {
@@ -50,10 +71,11 @@ class Projects extends React.Component {
     const project = projects.find(project => project.id === activeTab)
     return <div className={styles.content}>
       {project.image && <FullsizeImage image={project.image} thumb={project.thumb} alt={project.name} />}
-      <H2>{project.name} {this.renderTechIcons(project)}</H2>
+      <H2>{project.name}</H2>
+      {this.renderTechIcons(project)}
       {project.tabContent}
       {project.site && <Link href={project.site}>View site <FontAwesomeIcon icon="external-link-square-alt" /></Link>}
-      {project.repo && <Link href={project.repo}>View GitHub repository <FontAwesomeIcon icon="external-link-square-alt" /></Link>}
+      {project.repo && <Link href={project.repo}>GitHub repository <FontAwesomeIcon icon="external-link-square-alt" /></Link>}
     </div>
   }
 
