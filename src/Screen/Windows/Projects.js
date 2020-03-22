@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from "./Projects.module.css";
 import Link from "../Components/Link";
 import projects from "./projectList";
-import CaptionedImage from "../Components/CaptionedImage";
+import FullsizeImage from "../Components/FullsizeImage";
 
 function mapStateToProps(state) {
   return {
@@ -42,12 +42,10 @@ class Projects extends React.Component {
     const { activeTab } = this.state;
     const project = projects.find(project => project.id === activeTab)
     return <div className={styles.content}>
-      {project.image && <CaptionedImage image={project.image} caption={project.name} />}
+      {project.image && <FullsizeImage image={project.image} alt={project.name} />}
       {project.tabContent}
-      <div className={styles.links}>
-        {project.site && <Link href={project.site}>View site <FontAwesomeIcon icon="external-link-square-alt" /></Link>}
-        {project.repo && <Link href={project.repo}>View GitHub repository <FontAwesomeIcon icon="external-link-square-alt" /></Link>}
-      </div>
+      {project.site && <Link href={project.site}>View site <FontAwesomeIcon icon="external-link-square-alt" /></Link>}
+      {project.repo && <Link href={project.repo}>View GitHub repository <FontAwesomeIcon icon="external-link-square-alt" /></Link>}
     </div>
   }
 

@@ -43,47 +43,10 @@
 
 .content {
   overflow: auto;
-}
-
-.links {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
-}
-
-.linkIcon {
-  font-size: 2em;
-  padding-right: 20px;
-}
-
-.form {
-  width: 400px;
-  margin: 0 auto;
-}
-
-.email {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin: 10px 0;
-}
-
-.message {
-  margin: 10px 0;
-  text-align: left;
-}
-
-.message textarea {
-  width: calc(100% - 6px);
-  height: 100px;
-}
-
-.email input {
-  width: 300px;
-}
-
-.submit {
-  flex-grow: 0;
+  padding: 10px;
 }
 
 .topBar {
@@ -99,10 +62,6 @@
 
 .topBar > * {
   margin: 0 10px;
-}
-
-.contentBottom {
-  overflow: auto;
 }
 
 .greyedOut {
