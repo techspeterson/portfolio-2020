@@ -12,6 +12,7 @@ export default [
     image: werewolfImg,
     site: "https://techspeterson-werewolf.netlify.com/",
     repo: "https://github.com/techspeterson/werewolf",
+    techs: ["react"],
     tabContent: <div>
       <p>I have a great time moderating games of Werewolf when the class at CA gets together for a board game night, but it's admittedly pretty tough to keep track of everything that goes on. I already keep notes on who has which role and what their choices are each night, so I thought, why not make an app to simplify the process?</p>
 
@@ -27,6 +28,7 @@ export default [
     image: ttcImg,
     site: "https://tictactoe-tp.netlify.com/",
     repo: "https://github.com/techspeterson/tic-tac-toe",
+    techs: ["js"],
     tabContent: <div>
       <p>
         The classic Javascript project - a small browser version of tic-tac-toe. The player can click on a square on the board to mark it, and the CPU will respond with a move of its own. An alert will appear once the game's outcome is decided! The game also tracks the player's win/loss count and the player can choose to play as noughts or crosses.

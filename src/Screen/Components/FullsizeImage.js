@@ -10,10 +10,10 @@ function mapStateToProps(state) {
 }
 
 function FullsizeImage(props) {
-  const { image, thumb, alt, palette } = props;
+  const { image, thumb, alt, style, palette } = props;
 
   return (
-    <div {...props} className={styles.fullsizeImageContainer}>
+    <div style={style} className={styles.fullsizeImageContainer}>
       <a href={image} target="_blank" rel="noopener noreferrer">
         <img src={thumb} className={styles.fullsizeImage} alt={alt} />
         <FontAwesomeIcon icon="external-link-square-alt" className={styles.icon} color={palette.vibrant} />

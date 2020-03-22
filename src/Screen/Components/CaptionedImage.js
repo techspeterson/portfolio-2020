@@ -10,16 +10,16 @@ function mapStateToProps(state) {
 }
 
 function CaptionedImage(props) {
-  const { palette, image, caption } = props;
+  const { palette, image, style, caption } = props;
 
-  const Caption = styled.caption`
+  const Caption = styled.figcaption`
   color: ${palette.vibrant};
   width: 100%;
   font-style: italic;
   `;
 
   return (
-    <div className={styles.captionedImage} {...props} >
+    <div style={style} className={styles.captionedImage} >
       <img src={image} style={{ width: "100%" }} alt={caption} />
       <Caption>Caption: {caption}</Caption>
     </div>
