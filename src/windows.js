@@ -2,9 +2,7 @@ import React from "react";
 import AboutMe from "./Screen/Windows/AboutMe";
 import Credits from "./Screen/Windows/Credits";
 import Contact from "./Screen/Windows/Contact";
-
-// const aboutTitle = "about-me.pdf";
-// const creditsTitle = "credits.txt";
+import Projects from "./Screen/Windows/Projects";
 
 const windows = {
   about: {
@@ -33,9 +31,9 @@ const windows = {
     minimised: false
   },
   projects: {
-    title: "Explorer - Projects",
-    icon: "inbox",
-    component: <Contact />,
+    title: "Projects",
+    icon: "folder",
+    component: <Projects />,
     open: false,
     active: false,
     minimised: false

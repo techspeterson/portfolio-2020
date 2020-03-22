@@ -45,7 +45,7 @@ class Screen extends React.Component {
       return (
         <div className={styles.desktopInner}>
           <DesktopIcon icon="user" name="Profile" onClick={this.openWindow("about")} colour={palette.vibrant} />
-          <DesktopIcon icon="pencil-alt" name="Projects" colour={palette.vibrant} />
+          <DesktopIcon icon="pencil-alt" name="Projects" colour={palette.vibrant} onClick={this.openWindow("projects")} />
           <DesktopIcon icon="paper-plane" name="Contact" colour={palette.vibrant} onClick={this.openWindow("contact")} />
           <div className={styles.windowContainer}>
             {this.renderTopWindow()}
