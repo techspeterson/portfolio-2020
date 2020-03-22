@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from "./Projects.module.css";
 import Link from "../Components/Link";
+import { H2 } from "../Components/Headers"
 import projects from "./projectList";
 import FullsizeImage from "../Components/FullsizeImage";
 
@@ -42,7 +43,8 @@ class Projects extends React.Component {
     const { activeTab } = this.state;
     const project = projects.find(project => project.id === activeTab)
     return <div className={styles.content}>
-      {project.image && <FullsizeImage image={project.image} alt={project.name} />}
+      {project.image && <FullsizeImage image={project.image} thumb={project.thumb} alt={project.name} />}
+      <H2>{project.name}</H2>
       {project.tabContent}
       {project.site && <Link href={project.site}>View site <FontAwesomeIcon icon="external-link-square-alt" /></Link>}
       {project.repo && <Link href={project.repo}>View GitHub repository <FontAwesomeIcon icon="external-link-square-alt" /></Link>}
