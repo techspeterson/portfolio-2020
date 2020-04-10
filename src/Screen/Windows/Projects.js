@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ReactSVG } from 'react-svg'
@@ -14,19 +14,20 @@ function mapStateToProps(state) {
   }
 }
 
-class Projects extends React.Component {
-  state = {
-    activeTab: projects[0].id
+function Projects(props) {
+  // state = {
+  //   activeTab: projects[0].id
+  // }
+  const [activeTab, setActiveTab] = useState(projects[0].id)
+  const { palette } = props;
+
+  const switchTab = (tab) => (event) => {
+    // this.setState({ activeTab: tab });
+    setActiveTab(tab);
   }
 
-  switchTab = (tab) => (event) => {
-    this.setState({ activeTab: tab });
-  }
-
-  tabStyle = (tab) => {
-    const { palette } = this.props;
-
-    if (tab === this.state.activeTab) {
+  const tabStyle = (tab) => {
+    if (tab === activeTab) {
       return {
         color: palette.darkVibrant,
         fontWeight: "bold",
@@ -40,9 +41,7 @@ class Projects extends React.Component {
     }
   }
 
-  renderTechIcons = (project) => {
-    const { palette } = this.props;
-
+  const renderTechIcons = (project) => {
     return (
       <div>
         {project.techs.map(tech => {
@@ -68,48 +67,45 @@ class Projects extends React.Component {
     )
   }
 
-  renderTab = () => {
-    const { activeTab } = this.state;
+  const renderTab = () => {
     const project = projects.find(project => project.id === activeTab)
-    return <div className={styles.content}>
+    return <div className={styles.content} style={{ borderColor: palette.vibrant }}>
       {project.image && <FullsizeImage image={project.image} thumb={project.thumb} alt={project.name} />}
       <H2>{project.name}</H2>
       <H3>{project.purpose}</H3>
-      {this.renderTechIcons(project)}
+      {renderTechIcons(project)}
       {project.tabContent}
       {project.site && <Link href={project.site}>View site <FontAwesomeIcon icon="external-link-square-alt" /></Link>}
       {project.repo && <Link href={project.repo}>GitHub repository <FontAwesomeIcon icon="external-link-square-alt" /></Link>}
     </div>
   }
 
-  renderList = () => {
+  const renderList = () => {
     return projects.map(project => {
-      return <li key={project.id} onClick={this.switchTab(project.id)} style={this.tabStyle(project.id)}>
+      return <li key={project.id} onClick={switchTab(project.id)} style={tabStyle(project.id)}>
         {project.name}
       </li>
     })
   }
 
-  render() {
-    const { palette } = this.props;
-    return (
-      <div className={styles.container}>
-        <div className={styles.topBar} style={{ color: palette.darkVibrant, borderColor: palette.vibrant }}>
-          <FontAwesomeIcon icon="arrow-left" />
-          <FontAwesomeIcon icon="arrow-right" />
-        </div>
-        <div className={styles.bottomContainer}>
-          <div className={styles.list} style={{ borderColor: palette.vibrant }}>
-            <ul>
-              {this.renderList()}
-            </ul>
-          </div>
-          {this.renderTab()}
-        </div>
 
+  return (
+    <div className={styles.container}>
+      <div className={styles.topBar} style={{ color: palette.darkVibrant, borderColor: palette.vibrant }}>
+        <FontAwesomeIcon icon="arrow-left" />
+        <FontAwesomeIcon icon="arrow-right" />
       </div>
-    );
-  }
+      <div className={styles.bottomContainer}>
+        <div className={styles.list}>
+          <ul>
+            {renderList()}
+          </ul>
+        </div>
+        {renderTab()}
+      </div>
+
+    </div>
+  );
 }
 
 export default connect(mapStateToProps)(Projects);
