@@ -2,6 +2,7 @@ import React from 'react';
 import axios from "axios";
 import { connect } from "react-redux";
 import { Palette } from 'react-palette'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import styles from './App.module.css';
 import Screen from "./Screen/Screen";
@@ -70,7 +71,12 @@ class Monitor extends React.Component {
         <div className={styles.screenContainer}>
           {this.renderScreen()}
         </div>
-        <div className={styles.engraving}>Tessa Peterson</div>
+        <div className={styles.monitorBottom}>
+          <div className={styles.engraving}>Tessa Peterson</div>
+          <div className={styles.powerButton}>
+            <FontAwesomeIcon icon="power-off" />
+          </div>
+        </div>
       </div>
     )
   }

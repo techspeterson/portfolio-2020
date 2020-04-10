@@ -21,6 +21,8 @@
   padding: 0;
   margin: 0;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .listIcon {
@@ -90,4 +92,33 @@
   top: calc((100% / 2) - 0.5em);
   left: 5px;
   font-size: 0.7em;
+}
+
+@media only screen and (max-width: 500px) {
+  .bottomContainer {
+    flex-direction: column-reverse;
+  }
+
+  .list {
+    height: unset;
+    width: 100%;
+  }
+
+  .list ul {
+    flex-direction: row;
+  }
+
+  .list li {
+    width: 100px;
+    border-width: 0 0 0 1px;
+    flex-shrink: 0;
+  }
+
+  .content {
+    border-width: 0 0 2px 0;
+  }
+
+  .addressbox {
+    display: none;
+  }
 }

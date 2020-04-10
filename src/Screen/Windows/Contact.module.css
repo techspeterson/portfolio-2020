@@ -14,6 +14,8 @@
   list-style-type: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .listIcon {
@@ -95,6 +97,7 @@
 
 .contentBottom {
   overflow: auto;
+  flex-grow: 1;
 }
 
 .greyedOut {
@@ -104,4 +107,28 @@
 .spinner {
   font-size: 3em;
   padding: 20px;
+}
+
+@media only screen and (max-width: 500px) {
+  .container {
+    flex-direction: column-reverse;
+  }
+
+  .list {
+    height: unset;
+    width: 100%;
+  }
+
+  .list ul {
+    flex-direction: row;
+  }
+
+  .list li {
+    border-width: 0 0 0 1px;
+    width: calc(100% / 3);
+  }
+
+  .content {
+    border-width: 0 0 2px 0;
+  }
 }

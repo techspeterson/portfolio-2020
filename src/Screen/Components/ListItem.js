@@ -15,11 +15,14 @@ function ListItem(props) {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50px;
+    min-height: 50px;
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    border-color: ${palette.lightVibrant};
 
     &:hover {
       color: white !important;
-      background-color: ${palette.muted};
+      background-color: ${palette.lightMuted};
       cursor: pointer;
     }
   `;

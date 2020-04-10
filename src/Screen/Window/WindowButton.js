@@ -5,9 +5,7 @@ import styles from "./Window.module.css";
 
 function mapStateToProps(state) {
   return {
-    bgURL: state.bgURL,
-    palette: state.palette,
-    currentWindows: state.currentWindows
+    palette: state.palette
   }
 }
 
@@ -26,10 +24,10 @@ class WindowButton extends React.Component {
   }
 
   render() {
-    const { icon, onClick } = this.props;
+    const { icon, onClick, className } = this.props;
 
     return (
-      <FontAwesomeIcon icon={icon} className={styles.windowControlIcon} color={this.state.colour} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} onClick={onClick} />
+      <FontAwesomeIcon icon={icon} className={styles.windowControlIcon + (className ? " " + className : "")} color={this.state.colour} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} onClick={onClick} />
     )
   }
 }

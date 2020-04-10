@@ -91,8 +91,8 @@ function Projects(props) {
       <H3>{project.purpose} {project.institution ? "(" + project.institution + ")" : ""}</H3>
       {renderTechIcons(project)}
       {project.tabContent}
-      {project.site && <Link href={project.site}>View site <FontAwesomeIcon icon="external-link-square-alt" /></Link>}
-      {project.repo && <Link href={project.repo}>GitHub repository <FontAwesomeIcon icon="external-link-square-alt" /></Link>}
+      {project.site && <Link href={project.site} target="_blank">View site <FontAwesomeIcon icon="external-link-square-alt" /></Link>}
+      {project.repo && <Link href={project.repo} target="_blank">GitHub repository <FontAwesomeIcon icon="external-link-square-alt" /></Link>}
     </div>
   }
 
@@ -113,7 +113,7 @@ function Projects(props) {
           type="text"
           value="C:\Users\techspeterson\Documents\Projects"
           style={{ color: palette.muted, borderColor: palette.darkVibrant, flexGrow: 1 }}
-          className={styles.textbox}
+          className={styles.addressbox + " " + styles.textbox}
           readOnly
         />
         <div className={styles.searchbox}>

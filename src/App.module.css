@@ -14,10 +14,26 @@
   height: calc(var(--height) * var(--unit) + var(--taskbar-height));
 }
 
+.monitorBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .engraving {
   font-size: 3em;
   font-family: 'Pacifico', cursive;
   opacity: 0.5;
+}
+
+.powerButton {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background: #666666;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -28,13 +44,15 @@
 
 @media only screen and (max-width: 800px) {
   .screenContainer {
-    --width: 8;
-    --height: 10;
+    --unit: 100px;
+    --width: 6;
+    --height: 8;
   }
 }
 
 @media only screen and (max-width: 500px) {
   .screenContainer {
+    --width: 5;
     width: 100vw;
     height: 100vh;
     --unit: calc(100vw / --width);
@@ -43,12 +61,7 @@
     left: 0;
   }
 
-  .engraving {
-    /* position: absolute;
-    top: 0;
-    right: 20px;
-    color: white;
-    z-index: 1; */
+  .engraving, .powerButton {
     display: none;
   }
 }

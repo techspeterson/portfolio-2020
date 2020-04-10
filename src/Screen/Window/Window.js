@@ -28,8 +28,8 @@ class Window extends React.Component {
         <div className={styles.topBar}>
           <span>{windowObj.title}</span>
           <div className={styles.windowControls}>
-            <WindowButton icon="window-minimize" />
-            <WindowButton icon="window-maximize" />
+            <WindowButton icon="window-minimize" className={styles.notOnMobile} />
+            <WindowButton icon="window-maximize" className={styles.notOnMobile} />
             <WindowButton icon="window-close" onClick={this.closeWindow} />
           </div>
         </div>
