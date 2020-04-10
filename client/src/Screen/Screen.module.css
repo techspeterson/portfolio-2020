@@ -1,0 +1,41 @@
+.desktop {
+  background-size: cover !important;
+  background: white;
+  height: 100%;
+}
+
+.desktopInner {
+  display: grid;
+  grid-template-columns: repeat(var(--width), 1fr);
+  grid-template-rows: repeat(var(--height), 1fr) var(--taskbar-height);
+  grid-auto-flow: column;
+  height: 100%;
+  backdrop-filter: saturate(0.7);
+}
+
+.windowContainer {
+  grid-row: 1 / calc(var(--height) + 1);
+  grid-column: 2 / var(--width);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.credits {
+  grid-row-start: var(--height);
+  grid-column-start: var(--width);
+}
+
+@media only screen and (max-width: 800px) {
+  .desktop {
+    background-size: cover !important;
+  }
+
+  .desktopInner {
+    grid-template-rows:  var(--taskbar-height) repeat(var(--height), 1fr);
+  }
+
+  .credits {
+    grid-row-start: calc(var(--height) + 1);
+  }
+}

@@ -1,0 +1,67 @@
+.windowContainer {
+  background: black;
+  color: white;
+  width: 95%;
+  height: 95%;
+  padding: 0 3px 3px 3px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px 10px 0 0;
+  z-index: 999;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  padding: 0 10px;
+  flex-shrink: 0;
+}
+
+.windowControlIcon {
+  margin-left: 10px;
+}
+
+.windowControlIcon:hover {
+  cursor: pointer;
+}
+
+.windowInner {
+  background: white;
+  color: black;
+  flex-grow: 1;
+  overflow: auto;
+  text-align: center;
+  /* padding: 10px; */
+}
+
+.windowInner a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.credits {
+  width: 50% !important;
+  height: unset !important;
+}
+
+@media only screen and (max-width: 800px) {
+  .windowContainer {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: calc(100% - 6px);
+    height: calc(100% - 33px);
+    border-radius: 0;
+  }
+
+  .credits {
+    top: unset;
+    left: unset;
+  }
+
+  .notOnMobile {
+    display: none;
+  }
+}
