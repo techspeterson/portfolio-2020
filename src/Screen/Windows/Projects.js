@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ReactSVG } from 'react-svg'
+
 import styles from "./Projects.module.css";
 import Link from "../Components/Link";
 import { H2, H3 } from "../Components/Headers"
@@ -15,14 +16,27 @@ function mapStateToProps(state) {
 }
 
 function Projects(props) {
-  // state = {
-  //   activeTab: projects[0].id
-  // }
-  const [activeTab, setActiveTab] = useState(projects[0].id)
+  const [activeTab, setActiveTab] = useState(projects[0].id);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState(projects);
   const { palette } = props;
 
-  const switchTab = (tab) => (event) => {
-    // this.setState({ activeTab: tab });
+  useEffect(() => {
+    const st = searchTerm.toLowerCase()
+    const filteredProjects = projects.filter(project => {
+      return (project.name.toLowerCase().includes(st)
+        || project.techs.some(tech => {
+          return (tech.label.toLowerCase().includes(st)
+            || tech.id.includes(st));
+        }));
+    });
+    setSearchResults(filteredProjects);
+    if (filteredProjects.length && !filteredProjects.find(project => project.id === activeTab)) {
+      setActiveTab(filteredProjects[0].id)
+    }
+  }, [searchTerm, activeTab])
+
+  const switchTab = (tab) => () => {
     setActiveTab(tab);
   }
 
@@ -46,7 +60,7 @@ function Projects(props) {
       <div>
         {project.techs.map(tech => {
           if (tech.faicon) {
-            return <FontAwesomeIcon icon={["fab", tech.faicon]} className={styles.icon} color={palette.vibrant} key={tech.faicon} title={tech.label} />
+            return <FontAwesomeIcon icon={["fab", tech.faicon]} className={styles.icon} color={palette.vibrant} key={tech.id} title={tech.label} />
           }
           else {
             return <ReactSVG
@@ -60,6 +74,7 @@ function Projects(props) {
               }}
               className={styles.svgIcon}
               title={tech.label}
+              key={tech.id}
             />;
           }
         })}
@@ -72,7 +87,7 @@ function Projects(props) {
     return <div className={styles.content} style={{ borderColor: palette.vibrant }}>
       {project.image && <FullsizeImage image={project.image} thumb={project.thumb} alt={project.name} />}
       <H2>{project.name}</H2>
-      <H3>{project.purpose}</H3>
+      <H3>{project.purpose} {project.institution ? "(" + project.institution + ")" : ""}</H3>
       {renderTechIcons(project)}
       {project.tabContent}
       {project.site && <Link href={project.site}>View site <FontAwesomeIcon icon="external-link-square-alt" /></Link>}
@@ -81,19 +96,36 @@ function Projects(props) {
   }
 
   const renderList = () => {
-    return projects.map(project => {
+    return searchResults.map(project => {
       return <li key={project.id} onClick={switchTab(project.id)} style={tabStyle(project.id)}>
         {project.name}
       </li>
     })
   }
 
-
   return (
     <div className={styles.container}>
       <div className={styles.topBar} style={{ color: palette.darkVibrant, borderColor: palette.vibrant }}>
         <FontAwesomeIcon icon="arrow-left" />
         <FontAwesomeIcon icon="arrow-right" />
+        <input
+          type="text"
+          value="C:\Users\techspeterson\Documents\Projects"
+          style={{ color: palette.muted, borderColor: palette.darkVibrant, flexGrow: 1 }}
+          className={styles.textbox}
+          readOnly
+        />
+        <div className={styles.searchbox}>
+          <FontAwesomeIcon icon="search" className={styles.searchIcon} />
+          <input
+            type="text"
+            placeholder="Search Projects"
+            style={{ color: palette.muted, borderColor: palette.darkVibrant }}
+            className={styles.searchboxInner + " " + styles.textbox}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+
       </div>
       <div className={styles.bottomContainer}>
         <div className={styles.list}>

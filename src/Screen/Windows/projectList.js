@@ -20,6 +20,7 @@ import rubyIcon from "../../assets/ruby.svg";
 import railsIcon from "../../assets/rails.svg";
 import expressIcon from "../../assets/expressjs-icon.svg";
 import mongoIcon from "../../assets/mongodb.svg";
+import postgresIcon from "../../assets/postgresql.svg";
 
 // const techs = {
 //   css: ["CSS3", "css3-alt"],
@@ -74,6 +75,11 @@ const techs = {
     id: "aws",
     label: "Amazon Web Services",
     faicon: "aws"
+  },
+  postgres: {
+    id: "postgres",
+    label: "PostgreSQL",
+    svgicon: postgresIcon
   }
 }
 
@@ -87,6 +93,7 @@ export default [
     repo: "https://github.com/Stoaree",
     techs: [techs.express, techs.react, techs.mongo, techs.aws, techs.css],
     purpose: "Graded Group Assignment",
+    institution: "Coder Academy",
     tabContent: <div>
       <p>
         Stoaree is a proof of concept site created for Mark Howard, based on his podcast <Link href="https://www.howiegames.com/">The Howie Games</Link>. The purpose of the site is to take the concept of the podcast (an interview show covering the guest's life story) and, based on a provided set of questions, allow anyone to record and upload their own life story.
@@ -121,6 +128,7 @@ export default [
     repo: "https://github.com/techspeterson/movie-review-api",
     techs: [techs.js, techs.html, techs.css],
     purpose: "In-Class Exercise",
+    institution: "Coder Academy",
     tabContent: <div>
       <p>
         This small project utilises the <Link href="https://developer.nytimes.com/">New York Times API</Link> to retrieve NYT movie reviews based on a search query. The script uses Axios to fetch the API data and displays summaries of the retrieved movie reviews (including images and links to the full reviews) to the browser.
@@ -139,6 +147,7 @@ export default [
     repo: "https://github.com/techspeterson/tic-tac-toe",
     techs: [techs.js, techs.html, techs.css],
     purpose: "In-Class Exercise",
+    institution: "Coder Academy",
     tabContent: <div>
       <p>
         The classic Javascript project - a small browser version of tic-tac-toe. The player can click on a square on the board to mark it, and the CPU will respond with a move of its own. An alert will appear once the game's outcome is decided! The game also tracks the player's win/loss count and the player can choose to play as noughts or crosses.
@@ -156,8 +165,9 @@ export default [
     image: gameswapImg,
     site: "https://gameswap-tp.herokuapp.com/",
     repo: "https://github.com/techspeterson/gameswap",
-    techs: [techs.ruby, techs.rails, techs.aws, techs.html, techs.css],
+    techs: [techs.ruby, techs.rails, techs.postgres, techs.aws, techs.html, techs.css],
     purpose: "Graded Assignment",
+    institution: "Coder Academy",
     tabContent: <div>
       <p>
         This Rails project is a two-way marketplace concept for the trading of used video games. Users can sign up and post listings for games they would like to sell, or purchase an existing listing. Users can quickly view their listings and purchase history, browse and search listings by a variety of parameters (game console, genre, price, etc.), and maintain a public profile including a game wishlist.
@@ -173,6 +183,7 @@ export default [
     site: "https://techspeterson-portfolio.netlify.com/",
     techs: [techs.html, techs.css],
     purpose: "Graded Assignment",
+    institution: "Coder Academy",
     tabContent: <div>
       <p>
         The original version of my portfolio site. This portfolio was designed to showcase my web design skills while presenting information such as my personal interests, study history, and professional links.
@@ -187,6 +198,7 @@ export default [
     repo: "https://github.com/techspeterson/cluedo-app",
     techs: [techs.ruby],
     purpose: "Graded Assignment",
+    institution: "Coder Academy",
     tabContent: <div>
       <p>
         An app that runs in the terminal and lets the user play a stripped-down version of Cluedo. While there's no game board and the CPU players don't actually play against you, they're still happy to show you their cards whenever you make your guess about the conditions of the murder. An ingame checklist will keep track of the cards you've seen. Get your final accusation right to win the game!
