@@ -5,6 +5,7 @@ const Unsplash = require('unsplash-js').default;
 const { toJson } = require("unsplash-js");
 require("dotenv").config();
 const cors = require("cors");
+const path = require('path');
 
 const app = express();
 
@@ -26,6 +27,10 @@ app.get("/bg", (req, res) => {
         author: json.user.name
       });
     });
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
 app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT}`));
