@@ -55,7 +55,7 @@
     --width: 5;
     width: 100vw;
     height: 100vh;
-    --unit: calc(100vw / --width);
+    --unit: calc(100vw / var(--width));
     position: absolute;
     top: 0;
     left: 0;
