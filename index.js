@@ -9,7 +9,7 @@ const cors = require("cors");
 const app = express();
 app.use(express.json());
 app.use(cors());
-const PORT = 5000;
+// const PORT = 5000;
 
 const unsplash = new Unsplash({ accessKey: process.env.UNSPLASH_ACCESS_KEY });
 
@@ -25,4 +25,4 @@ app.get("/bg", (req, res) => {
     });
 });
 
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT}`));
