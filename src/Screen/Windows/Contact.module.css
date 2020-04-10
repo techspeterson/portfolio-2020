@@ -7,26 +7,13 @@
 .list {
   width: 200px;
   overflow: auto;
-  border-width: 0 2px 0 0;
-  border-style: solid;
+  flex-shrink: 0;
 }
 
 .list ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
-}
-
-.list li {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-}
-
-.list li:hover {
-  background: #eeeeee;
-  cursor: pointer;
 }
 
 .listIcon {
@@ -39,6 +26,8 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  border-width: 0 0 0 2px;
+  border-style: solid;
 }
 
 .links {

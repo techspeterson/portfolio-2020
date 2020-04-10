@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from "./Contact.module.css";
 import Link from "../Components/Link";
+import ListItem from "../Components/ListItem";
 import ContactForm from "./ContactForm";
 
 function mapStateToProps(state) {
@@ -77,21 +78,21 @@ class Contact extends React.Component {
     const { palette } = this.props;
     return (
       <div className={styles.container}>
-        <div className={styles.list} style={{ borderColor: palette.vibrant }}>
+        <div className={styles.list}>
           <ul>
-            <li onClick={this.switchTab("email")} style={this.tabStyle("email")}>
+            <ListItem onClick={this.switchTab("email")} style={this.tabStyle("email")}>
               <FontAwesomeIcon icon="envelope" className={styles.listIcon} />
               Compose Email
-              </li>
-            <li onClick={this.switchTab("links")} style={this.tabStyle("links")}>
+              </ListItem>
+            <ListItem onClick={this.switchTab("links")} style={this.tabStyle("links")}>
               <FontAwesomeIcon icon="external-link-square-alt" className={styles.listIcon} />
-              Links</li>
-            <li onClick={this.switchTab("twitter")} style={this.tabStyle("twitter")}>
+              Links</ListItem>
+            <ListItem onClick={this.switchTab("twitter")} style={this.tabStyle("twitter")}>
               <FontAwesomeIcon icon={["fab", "twitter"]} className={styles.listIcon} />
-              Twitter</li>
+              Twitter</ListItem>
           </ul>
         </div>
-        <div className={styles.content}>
+        <div className={styles.content} style={{ borderColor: palette.vibrant }}>
           <div className={styles.topBar} style={{ color: palette.darkVibrant, borderColor: palette.vibrant }}>
             <FontAwesomeIcon icon="reply" />
             <FontAwesomeIcon icon="reply-all" />

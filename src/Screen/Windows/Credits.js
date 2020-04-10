@@ -13,7 +13,7 @@ class Credits extends React.Component {
     const { bgInfo } = this.props;
 
     return (
-      <div>
+      <div style={{ padding: "10px" }}>
         &copy; Tessa Peterson 2020<br />
         Built in React<br />
         Randomly generated desktop background by <Link href={bgInfo.url}>{bgInfo.author}</Link> on <Link href="https://unsplash.com/">Unsplash</Link>

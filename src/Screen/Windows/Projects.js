@@ -5,7 +5,8 @@ import { ReactSVG } from 'react-svg'
 
 import styles from "./Projects.module.css";
 import Link from "../Components/Link";
-import { H2, H3 } from "../Components/Headers"
+import { H2, H3 } from "../Components/Headers";
+import ListItem from "../Components/ListItem";
 import projects from "./projectList";
 import FullsizeImage from "../Components/FullsizeImage";
 
@@ -97,9 +98,9 @@ function Projects(props) {
 
   const renderList = () => {
     return searchResults.map(project => {
-      return <li key={project.id} onClick={switchTab(project.id)} style={tabStyle(project.id)}>
+      return <ListItem key={project.id} onClick={switchTab(project.id)} style={tabStyle(project.id)}>
         {project.name}
-      </li>
+      </ListItem>
     })
   }
 

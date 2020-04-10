@@ -23,18 +23,6 @@
   width: 100%;
 }
 
-.list li {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-}
-
-.list li:hover {
-  background: #eeeeee;
-  cursor: pointer;
-}
-
 .listIcon {
   font-size: 1.2em;
   margin-right: 20px;

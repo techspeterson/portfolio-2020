@@ -71,6 +71,7 @@ class Monitor extends React.Component {
         <div className={styles.screenContainer}>
           {this.renderScreen()}
         </div>
+        <div className={styles.engraving}>Tessa Peterson</div>
       </div>
     )
   }
