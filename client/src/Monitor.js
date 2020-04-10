@@ -27,7 +27,7 @@ class Monitor extends React.Component {
   }
 
   componentDidMount() {
-    axios({ url: `${process.env.REACT_APP_SERVER_URL}/bg`, timeout: 2000 }).then(res => {
+    axios({ url: "/bg", timeout: 2000 }).then(res => {
       console.log("received")
       this.setState({ bgURL: res.data.imageURL + "&fm=jpg&w=1000&h=600&fit=crop" });
       this.props.setBgInfo(res.data);
