@@ -65,16 +65,48 @@ class Monitor extends React.Component {
     }
   }
 
+  bgStyle = () => {
+    const { palette } = this.props;
+    if (palette && !palette.loading) {
+      return {
+        background: palette.darkMuted
+      }
+    }
+    else return {
+      background: "black"
+    };
+  }
+
+  monitorStyle = () => {
+    const { palette } = this.props;
+    if (palette && !palette.loading) {
+      return {
+        background: `linear-gradient(135deg, rgba(128, 128, 128, 0.9), rgba(128, 128, 128, 0.8)), ${palette.lightVibrant}`
+      }
+    }
+  }
+
+  engravingStyle = () => {
+    const { palette } = this.props;
+    if (palette && !palette.loading) {
+      return {
+        color: palette.darkVibrant
+      }
+    }
+  }
+
   render() {
     return (
-      <div className={styles.monitor}>
-        <div className={styles.screenContainer}>
-          {this.renderScreen()}
-        </div>
-        <div className={styles.monitorBottom}>
-          <div className={styles.engraving}>Tessa Peterson</div>
-          <div className={styles.powerButton}>
-            <FontAwesomeIcon icon="power-off" />
+      <div className={styles.container} style={this.bgStyle()}>
+        <div className={styles.monitor} style={this.monitorStyle()}>
+          <div className={styles.screenContainer}>
+            {this.renderScreen()}
+          </div>
+          <div className={styles.monitorBottom}>
+            <div className={styles.engraving} style={this.engravingStyle()}>Tessa Peterson</div>
+            <div className={styles.powerButton} style={this.engravingStyle()}>
+              <FontAwesomeIcon icon="power-off" />
+            </div>
           </div>
         </div>
       </div>
