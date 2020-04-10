@@ -71,5 +71,8 @@
 
 .icon {
   font-size: 2em;
-  margin: 5px 0;
+}
+
+.icon, .svgIcon {
+  margin: 5px;
 }
