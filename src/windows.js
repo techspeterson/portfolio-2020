@@ -3,6 +3,7 @@ import AboutMe from "./Screen/Windows/AboutMe";
 import Credits from "./Screen/Windows/Credits";
 import Contact from "./Screen/Windows/Contact";
 import Projects from "./Screen/Windows/Projects";
+import styles from "./Screen/Window/Window.module.css";
 
 const windows = {
   about: {
@@ -20,7 +21,7 @@ const windows = {
     open: false,
     active: false,
     minimised: false,
-    style: { width: "60%", height: "unset" }
+    class: styles.credits
   },
   contact: {
     title: "Inbox - Contact",

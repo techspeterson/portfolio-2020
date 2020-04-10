@@ -7,11 +7,10 @@ import styles from './App.module.css';
 import Screen from "./Screen/Screen";
 import StartupScreen from "./Screen/StartupScreen";
 import { setBgInfo, setPalette } from "./store";
-import defaultBg from "./assets/photo-1419242902214-272b3f66ee7a.jpg";
+import defaultBg from "./assets/vincentiu-solomon-ln5drpv_ImI-unsplash.jpg";
 
 function mapStateToProps(state) {
   return {
-    bgURL: state.bgURL,
     palette: state.palette
   }
 }
@@ -29,7 +28,7 @@ class Monitor extends React.Component {
   componentDidMount() {
     axios({ url: `${process.env.REACT_APP_SERVER_URL}/bg`, timeout: 2000 }).then(res => {
       console.log("received")
-      this.setState({ bgURL: res.data.imageURL + "&fm=jpg&w=1000&h=700&fit=crop" });
+      this.setState({ bgURL: res.data.imageURL + "&fm=jpg&w=1000&h=600&fit=crop" });
       this.props.setBgInfo(res.data);
     })
       .catch(err => {

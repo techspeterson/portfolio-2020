@@ -1,4 +1,5 @@
 .desktop {
+  background-size: cover !important;
   background: white;
   height: 100%;
 }
@@ -23,4 +24,18 @@
 .credits {
   grid-row-start: var(--height);
   grid-column-start: var(--width);
+}
+
+@media only screen and (max-width: 800px) {
+  .desktop {
+    background-size: cover !important;
+  }
+
+  .desktopInner {
+    grid-template-rows:  var(--taskbar-height) repeat(var(--height), 1fr);
+  }
+
+  .credits {
+    grid-row-start: calc(var(--height) + 1);
+  }
 }

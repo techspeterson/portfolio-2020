@@ -24,7 +24,7 @@ class Window extends React.Component {
     const { windowObj } = this.props;
 
     return (
-      <div className={styles.windowContainer} style={Object.assign({}, { background: this.props.palette.vibrant }, windowObj.style)}>
+      <div className={styles.windowContainer + (windowObj.class ? " " + windowObj.class : "")} style={{ background: this.props.palette.vibrant }}>
         <div className={styles.topBar}>
           <span>{windowObj.title}</span>
           <div className={styles.windowControls}>

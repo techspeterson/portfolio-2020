@@ -1,8 +1,8 @@
 .windowContainer {
   background: black;
   color: white;
-  width: 90%;
-  height: 90%;
+  width: 95%;
+  height: 95%;
   padding: 0 3px 3px 3px;
   display: flex;
   flex-direction: column;
@@ -41,13 +41,23 @@
   font-weight: bold;
 }
 
+.credits {
+  width: 50% !important;
+  height: unset !important;
+}
+
 @media only screen and (max-width: 800px) {
   .windowContainer {
     position: absolute;
-    top: 0;
+    top: 30px;
     left: 0;
     width: calc(100% - 6px);
     height: calc(100% - 33px);
     border-radius: 0;
+  }
+
+  .credits {
+    top: unset;
+    left: unset;
   }
 }
