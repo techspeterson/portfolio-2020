@@ -15,6 +15,8 @@ import reviewImg from "../../assets/review-finder.png";
 import reviewTh from "../../assets/review-finder-thumb.png";
 import stoareeImg from "../../assets/stoaree.png";
 import stoareeTh from "../../assets/stoaree-thumb.png";
+import zenImg from "../../assets/zen-garden.png";
+import zenTh from "../../assets/zen-garden-thumb.png";
 
 import rubyIcon from "../../assets/ruby.svg";
 import railsIcon from "../../assets/rails.svg";
@@ -187,6 +189,25 @@ export default [
     tabContent: <div>
       <p>
         The original version of my portfolio site. This portfolio was designed to showcase my web design skills while presenting information such as my personal interests, study history, and professional links.
+      </p>
+      <p>
+        The site is required to be a static site that utilises our own manual CSS styling rather than the use of existing frameworks. Multiple reusable components need to be created and utilised and the site's style sheets are SRI protected.
+      </p>
+    </div>
+  },
+  {
+    id: "zen",
+    name: "Zen Garden",
+    thumb: zenTh,
+    image: zenImg,
+    repo: "https://github.com/techspeterson/zen-garden",
+    site: "https://techspeterson-zen-garden.netlify.com/",
+    techs: [techs.css],
+    purpose: "In-Class Exercise",
+    institution: "Coder Academy",
+    tabContent: <div>
+      <p>
+        My own version of the <Link href="http://www.csszengarden.com/">CSS Zen Garden</Link>. The challenge was to style the page using only CSS with no changes to the HTML. It was a fun experiment in figuring out how CSS positioning alone can drastically change the flow of the page.
       </p>
     </div>
   },
