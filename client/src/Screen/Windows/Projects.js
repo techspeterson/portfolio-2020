@@ -91,8 +91,10 @@ function Projects(props) {
       <H3>{project.purpose} {project.institution ? "(" + project.institution + ")" : ""}</H3>
       {renderTechIcons(project)}
       {project.tabContent}
-      {project.site && <Link href={project.site} target="_blank">View site <FontAwesomeIcon icon="external-link-square-alt" /></Link>}
-      {project.repo && <Link href={project.repo} target="_blank">GitHub repository <FontAwesomeIcon icon="external-link-square-alt" /></Link>}
+      <ul className={styles.links}>
+        {project.site && <li><Link href={project.site} target="_blank">View site <FontAwesomeIcon icon="external-link-square-alt" /></Link></li>}
+        {project.repo && <li><Link href={project.repo} target="_blank">GitHub repository <FontAwesomeIcon icon="external-link-square-alt" /></Link></li>}
+      </ul>
     </div>
   }
 

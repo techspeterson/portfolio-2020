@@ -6,6 +6,7 @@ import styles from "./Contact.module.css";
 import Link from "../Components/Link";
 import ListItem from "../Components/ListItem";
 import ContactForm from "./ContactForm";
+import resume from "../../assets/Tessa Peterson - Resume Apr 2020.pdf"
 
 function mapStateToProps(state) {
   return {
@@ -53,6 +54,7 @@ class Contact extends React.Component {
         tabContent = <ul className={styles.links}>
           <li><FontAwesomeIcon icon={["fab", "github"]} color={palette.darkVibrant} className={styles.linkIcon} /> <Link href="https://github.com/techspeterson" target="_blank">GitHub: techspeterson</Link></li>
           <li><FontAwesomeIcon icon={["fab", "linkedin"]} color={palette.darkVibrant} className={styles.linkIcon} /> <Link href="https://www.linkedin.com/in/tessa-peterson-3437b2125/" target="_blank">Tessa Peterson on LinkedIn</Link></li>
+          <li><FontAwesomeIcon icon={["fab", "twitter"]} color={palette.darkVibrant} className={styles.linkIcon} /> <Link href="https://twitter.com/techspeterson" target="_blank">Twitter: @techspeterson</Link></li>
         </ul>
         break;
       case "twitter":
@@ -66,6 +68,12 @@ class Contact extends React.Component {
             placeholder={<FontAwesomeIcon icon="atom" color={palette.vibrant} className={styles.spinner} spin />}
           />
         </div>
+        break;
+      case "resume":
+        tabContent = <ul className={styles.links}>
+          <li><FontAwesomeIcon icon="file-code" color={palette.darkVibrant} className={styles.linkIcon} /> <Link href="https://techspeterson-resume.netlify.app/" target="_blank">Web version</Link></li>
+          <li><FontAwesomeIcon icon="file-pdf" color={palette.darkVibrant} className={styles.linkIcon} /> <Link href={resume} target="_blank">PDF version</Link></li>
+        </ul>
         break;
       default:
         break;
@@ -87,9 +95,12 @@ class Contact extends React.Component {
             <ListItem onClick={this.switchTab("links")} style={this.tabStyle("links")}>
               <FontAwesomeIcon icon="external-link-square-alt" className={styles.listIcon} />
               Links</ListItem>
-            <ListItem onClick={this.switchTab("twitter")} style={this.tabStyle("twitter")}>
+            <ListItem onClick={this.switchTab("resume")} style={this.tabStyle("resume")}>
+              <FontAwesomeIcon icon="file-alt" className={styles.listIcon} />
+              Resume</ListItem>
+            {/* <ListItem onClick={this.switchTab("twitter")} style={this.tabStyle("twitter")}>
               <FontAwesomeIcon icon={["fab", "twitter"]} className={styles.listIcon} />
-              Twitter</ListItem>
+              Twitter</ListItem> */}
           </ul>
         </div>
         <div className={styles.content} style={{ borderColor: palette.vibrant }}>

@@ -94,6 +94,12 @@
   font-size: 0.7em;
 }
 
+.links {
+  padding: 0 0 1em 0;
+  margin: 0;
+  list-style-type: none;
+}
+
 @media only screen and (max-width: 500px) {
   .bottomContainer {
     flex-direction: column-reverse;
