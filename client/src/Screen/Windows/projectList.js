@@ -24,14 +24,6 @@ import expressIcon from "../../assets/expressjs-icon.svg";
 import mongoIcon from "../../assets/mongodb.svg";
 import postgresIcon from "../../assets/postgresql.svg";
 
-// const techs = {
-//   css: ["CSS3", "css3-alt"],
-//   html: ["HTML5", "html5"],
-//   react: ["React.js", "react"],
-//   js: ["JavaScript", "js"],
-//   ruby: ["Ruby", null, rubyIcon]
-// }
-
 const techs = {
   css: {
     id: "css",

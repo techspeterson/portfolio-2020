@@ -1,40 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Contact.module.css";
 
-export default class MyForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.submitForm = this.submitForm.bind(this);
-    this.state = {
-      status: ""
-    };
-  }
+export default function MyForm() {
+  const [status, setStatus] = useState("");
 
-  render() {
-    const { status } = this.state;
-    return (
-      <form
-        onSubmit={this.submitForm}
-        action="https://formspree.io/mjvokwej"
-        method="POST"
-        className={styles.form}
-      >
-        <div className={styles.email}>
-          <label htmlFor="email">Email:</label>
-          <input type="email" name="email" id="email" />
-        </div>
-        <div className={styles.message}>
-          <label htmlFor="message">Message:</label><br />
-          <textarea name="message" id="message" />
-        </div>
-
-        {status === "SUCCESS" ? <p>Thanks!</p> : <button className={styles.submit}>Submit</button>}
-        {status === "ERROR" && <p>Ooops! There was an error.</p>}
-      </form>
-    );
-  }
-
-  submitForm(ev) {
+  const submitForm = (ev) => {
     ev.preventDefault();
     const form = ev.target;
     const data = new FormData(form);
@@ -45,11 +15,32 @@ export default class MyForm extends React.Component {
       if (xhr.readyState !== XMLHttpRequest.DONE) return;
       if (xhr.status === 200) {
         form.reset();
-        this.setState({ status: "SUCCESS" });
+        setStatus("SUCCESS");
       } else {
-        this.setState({ status: "ERROR" });
+        setStatus("ERROR");
       }
     };
     xhr.send(data);
   }
+
+  return (
+    <form
+      onSubmit={submitForm}
+      action="https://formspree.io/mjvokwej"
+      method="POST"
+      className={styles.form}
+    >
+      <div className={styles.email}>
+        <label htmlFor="email">Email:</label>
+        <input type="email" name="email" id="email" />
+      </div>
+      <div className={styles.message}>
+        <label htmlFor="message">Message:</label><br />
+        <textarea name="message" id="message" />
+      </div>
+
+      {status === "SUCCESS" ? <p>Thanks!</p> : <button className={styles.submit}>Submit</button>}
+      {status === "ERROR" && <p>Ooops! There was an error.</p>}
+    </form>
+  );
 }

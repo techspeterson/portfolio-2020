@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { connect } from "react-redux";
 import { Palette } from 'react-palette'
@@ -21,21 +21,20 @@ const mapDispatchToProps = {
   setPalette
 }
 
-class Monitor extends React.Component {
-  state = {
-    bgURL: null
-  }
+function Monitor(props) {
+  const [bgURL, setBgURL] = useState();
+  const { palette, setBgInfo } = props;
 
-  componentDidMount() {
+  useEffect(() => {
     axios({ url: "/bg", timeout: 2000 }).then(res => {
       console.log("received")
-      this.setState({ bgURL: res.data.imageURL + "&fm=jpg&w=1000&h=600&fit=crop" });
-      this.props.setBgInfo(res.data);
+      setBgURL(res.data.imageURL + "&fm=jpg&w=1000&h=600&fit=crop");
+      setBgInfo(res.data);
     })
       .catch(err => {
         console.log("error retrieving bg. using default");
-        this.setState({ bgURL: defaultBg });
-        this.props.setBgInfo({
+        setBgURL(defaultBg);
+        setBgInfo({
           url: "https://unsplash.com/photos/ln5drpv_ImI",
           author: {
             name: "Vincentiu Solomon",
@@ -43,22 +42,20 @@ class Monitor extends React.Component {
           }
         });
       });
-  }
+  }, [setBgInfo]);
 
-  renderScreenWithPalette = (palette, bgURL) => {
+  const renderScreenWithPalette = (palette, bgURL) => {
     if (!palette.loading) {
       return <Screen bgURL={bgURL} paletteProp={palette.data} />
     }
   }
 
-  renderScreen = () => {
-    const { bgURL } = this.state;
-
+  const renderScreen = () => {
     if (bgURL) {
       return (
         <Palette src={bgURL}>
           {(palette) => (
-            this.renderScreenWithPalette(palette, bgURL)
+            renderScreenWithPalette(palette, bgURL)
           )}
         </Palette>
       );
@@ -68,8 +65,7 @@ class Monitor extends React.Component {
     }
   }
 
-  bgStyle = () => {
-    const { palette } = this.props;
+  const bgStyle = () => {
     if (palette && !palette.loading) {
       return {
         background: palette.darkMuted
@@ -80,8 +76,7 @@ class Monitor extends React.Component {
     };
   }
 
-  monitorStyle = () => {
-    const { palette } = this.props;
+  const monitorStyle = () => {
     if (palette && !palette.loading) {
       return {
         background: `linear-gradient(135deg, rgba(128, 128, 128, 0.9), rgba(128, 128, 128, 0.8)), ${palette.lightVibrant}`
@@ -89,8 +84,7 @@ class Monitor extends React.Component {
     }
   }
 
-  engravingStyle = () => {
-    const { palette } = this.props;
+  const engravingStyle = () => {
     if (palette && !palette.loading) {
       return {
         color: palette.darkVibrant
@@ -98,24 +92,21 @@ class Monitor extends React.Component {
     }
   }
 
-  render() {
-    return (
-      <div className={styles.container} style={this.bgStyle()}>
-        <div className={styles.monitor} style={this.monitorStyle()}>
-          <div className={styles.screenContainer}>
-            {this.renderScreen()}
-          </div>
-          <div className={styles.monitorBottom}>
-            <div className={styles.engraving} style={this.engravingStyle()}>Tessa Peterson</div>
-            <div className={styles.powerButton} style={this.engravingStyle()}>
-              <FontAwesomeIcon icon="power-off" />
-            </div>
+  return (
+    <div className={styles.container} style={bgStyle()}>
+      <div className={styles.monitor} style={monitorStyle()}>
+        <div className={styles.screenContainer}>
+          {renderScreen()}
+        </div>
+        <div className={styles.monitorBottom}>
+          <div className={styles.engraving} style={engravingStyle()}>Tessa Peterson</div>
+          <div className={styles.powerButton} style={engravingStyle()}>
+            <FontAwesomeIcon icon="power-off" />
           </div>
         </div>
       </div>
-    )
-  }
-
+    </div>
+  )
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Monitor);

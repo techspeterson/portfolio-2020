@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import styles from "./Screen.module.css";
@@ -10,7 +10,6 @@ import { openWindow, setPalette } from "../store";
 function mapStateToProps(state) {
   return {
     currentWindows: state.currentWindows,
-    // bgURL: state.bgURL,
     palette: state.palette
   };
 }
@@ -20,17 +19,18 @@ const mapDispatchToProps = {
   setPalette
 }
 
-class Screen extends React.Component {
-  componentDidMount() {
-    this.props.setPalette(this.props.paletteProp)
+function Screen(props) {
+  const { palette, setPalette, paletteProp, currentWindows, bgURL } = props;
+
+  useEffect(() => {
+    setPalette(paletteProp)
+  })
+
+  const openWindow = (window) => () => {
+    props.openWindow(window);
   }
 
-  openWindow = (window) => (event) => {
-    this.props.openWindow(window);
-  }
-
-  renderTopWindow = () => {
-    const { currentWindows } = this.props;
+  const renderTopWindow = () => {
     if (currentWindows.length) {
       const activeWindow = currentWindows.find(window => window.active);
       return (
@@ -39,34 +39,31 @@ class Screen extends React.Component {
     }
   }
 
-  renderDesktopInner = () => {
-    const { palette } = this.props;
+  const renderDesktopInner = () => {
     if (palette) {
       return (
         <div className={styles.desktopInner}>
-          <DesktopIcon icon="user" name="Profile" onClick={this.openWindow("about")} colour={palette.vibrant} />
-          <DesktopIcon icon="pencil-alt" name="Projects" colour={palette.vibrant} onClick={this.openWindow("projects")} />
-          <DesktopIcon icon="paper-plane" name="Contact" colour={palette.vibrant} onClick={this.openWindow("contact")} />
+          <DesktopIcon icon="user" name="Profile" onClick={openWindow("about")} colour={palette.vibrant} />
+          <DesktopIcon icon="pencil-alt" name="Projects" colour={palette.vibrant} onClick={openWindow("projects")} />
+          <DesktopIcon icon="paper-plane" name="Contact" colour={palette.vibrant} onClick={openWindow("contact")} />
           <div className={styles.windowContainer}>
-            {this.renderTopWindow()}
+            {renderTopWindow()}
           </div>
-          <DesktopIcon icon="code" name="Credits" onClick={this.openWindow("credits")} className={styles.credits} colour={palette.vibrant} />
+          <DesktopIcon icon="code" name="Credits" onClick={openWindow("credits")} className={styles.credits} colour={palette.vibrant} />
           <Taskbar />
         </div>
       )
     }
   }
 
-  render() {
-    return (
-      <div
-        className={styles.desktop}
-        style={{ background: `url(${this.props.bgURL})` }}
-      >
-        {this.renderDesktopInner()}
-      </div>
-    )
-  }
+  return (
+    <div
+      className={styles.desktop}
+      style={{ background: `url(${bgURL})` }}
+    >
+      {renderDesktopInner()}
+    </div>
+  )
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Screen);

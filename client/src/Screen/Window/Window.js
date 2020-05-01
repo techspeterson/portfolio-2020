@@ -15,30 +15,28 @@ const mapDispatchToProps = {
   closeWindow
 }
 
-class Window extends React.Component {
-  closeWindow = () => {
-    this.props.closeWindow(this.props.index);
+function Window(props) {
+  const closeWindow = () => {
+    props.closeWindow(props.index);
   }
 
-  render() {
-    const { windowObj } = this.props;
+  const { windowObj } = props;
 
-    return (
-      <div className={styles.windowContainer + (windowObj.class ? " " + windowObj.class : "")} style={{ background: this.props.palette.vibrant }}>
-        <div className={styles.topBar}>
-          <span>{windowObj.title}</span>
-          <div className={styles.windowControls}>
-            <WindowButton icon="window-minimize" className={`${styles.notOnMobile} ${styles.disabled}`} />
-            <WindowButton icon="window-maximize" className={`${styles.notOnMobile} ${styles.disabled}`} />
-            <WindowButton icon="window-close" onClick={this.closeWindow} enabled={true} />
-          </div>
-        </div>
-        <div className={styles.windowInner}>
-          {windowObj.component}
+  return (
+    <div className={styles.windowContainer + (windowObj.class ? " " + windowObj.class : "")} style={{ background: props.palette.vibrant }}>
+      <div className={styles.topBar}>
+        <span>{windowObj.title}</span>
+        <div className={styles.windowControls}>
+          <WindowButton icon="window-minimize" className={`${styles.notOnMobile} ${styles.disabled}`} />
+          <WindowButton icon="window-maximize" className={`${styles.notOnMobile} ${styles.disabled}`} />
+          <WindowButton icon="window-close" onClick={closeWindow} enabled={true} />
         </div>
       </div>
-    );
-  }
+      <div className={styles.windowInner}>
+        {windowObj.component}
+      </div>
+    </div>
+  );
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Window);

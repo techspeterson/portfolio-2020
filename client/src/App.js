@@ -9,14 +9,12 @@ import Monitor from "./Monitor";
 
 library.add(fab, faUser, faPencilAlt, faPaperPlane, faCode, faBatteryFull, faBatteryThreeQuarters, faBatteryHalf, faBatteryQuarter, faBatteryEmpty, faWifi, faWindowMaximize, faWindowClose, faWindowMinimize, faFilePdf, faAtom, faStar, faFile, faEnvelope, faReply, faReplyAll, faExternalLinkSquareAlt, faTrashAlt, faTimes, faPrint, faInbox, faFolder, faArrowLeft, faArrowRight, faSearch, faPowerOff, faFileAlt, faFileCode);
 
-class App extends React.Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <Monitor />
-      </Provider>
-    );
-  }
+function App() {
+  return (
+    <Provider store={store}>
+      <Monitor />
+    </Provider>
+  );
 }
 
 export default App;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TwitterTimelineEmbed } from "react-twitter-embed";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -14,19 +14,16 @@ function mapStateToProps(state) {
   }
 }
 
-class Contact extends React.Component {
-  state = {
-    activeTab: "email"
+function Contact(props) {
+  const [activeTab, setActiveTab] = useState("email");
+  const { palette } = props;
+
+  const switchTab = (tab) => () => {
+    setActiveTab(tab);
   }
 
-  switchTab = (tab) => (event) => {
-    this.setState({ activeTab: tab });
-  }
-
-  tabStyle = (tab) => {
-    const { palette } = this.props;
-
-    if (tab === this.state.activeTab) {
+  const tabStyle = (tab) => {
+    if (tab === activeTab) {
       return {
         color: palette.darkVibrant,
         fontWeight: "bold",
@@ -40,11 +37,10 @@ class Contact extends React.Component {
     }
   }
 
-  renderTab = () => {
+  const renderTab = () => {
     let tabContent;
-    const { palette } = this.props;
 
-    switch (this.state.activeTab) {
+    switch (activeTab) {
       case "email":
         tabContent = <div>
           <ContactForm />
@@ -82,42 +78,39 @@ class Contact extends React.Component {
     return tabContent;
   }
 
-  render() {
-    const { palette } = this.props;
-    return (
-      <div className={styles.container}>
-        <div className={styles.list}>
-          <ul>
-            <ListItem onClick={this.switchTab("email")} style={this.tabStyle("email")}>
-              <FontAwesomeIcon icon="envelope" className={styles.listIcon} />
+  return (
+    <div className={styles.container}>
+      <div className={styles.list}>
+        <ul>
+          <ListItem onClick={switchTab("email")} style={tabStyle("email")}>
+            <FontAwesomeIcon icon="envelope" className={styles.listIcon} />
               Compose Email
               </ListItem>
-            <ListItem onClick={this.switchTab("links")} style={this.tabStyle("links")}>
-              <FontAwesomeIcon icon="external-link-square-alt" className={styles.listIcon} />
+          <ListItem onClick={switchTab("links")} style={tabStyle("links")}>
+            <FontAwesomeIcon icon="external-link-square-alt" className={styles.listIcon} />
               Links</ListItem>
-            <ListItem onClick={this.switchTab("resume")} style={this.tabStyle("resume")}>
-              <FontAwesomeIcon icon="file-alt" className={styles.listIcon} />
+          <ListItem onClick={switchTab("resume")} style={tabStyle("resume")}>
+            <FontAwesomeIcon icon="file-alt" className={styles.listIcon} />
               Resume</ListItem>
-            {/* <ListItem onClick={this.switchTab("twitter")} style={this.tabStyle("twitter")}>
+          {/* <ListItem onClick={this.switchTab("twitter")} style={this.tabStyle("twitter")}>
               <FontAwesomeIcon icon={["fab", "twitter"]} className={styles.listIcon} />
               Twitter</ListItem> */}
-          </ul>
-        </div>
-        <div className={styles.content} style={{ borderColor: palette.vibrant }}>
-          <div className={styles.topBar} style={{ color: palette.darkVibrant, borderColor: palette.vibrant }}>
-            <FontAwesomeIcon icon="reply" />
-            <FontAwesomeIcon icon="reply-all" />
-            <FontAwesomeIcon icon="reply" flip="horizontal" />
-            <FontAwesomeIcon icon="times" className={styles.greyedOut} />
-            <FontAwesomeIcon icon="trash-alt" className={styles.greyedOut} />
-            <FontAwesomeIcon icon="star" />
-            <FontAwesomeIcon icon="print" />
-          </div>
-          {this.renderTab()}
-        </div>
+        </ul>
       </div>
-    );
-  }
+      <div className={styles.content} style={{ borderColor: palette.vibrant }}>
+        <div className={styles.topBar} style={{ color: palette.darkVibrant, borderColor: palette.vibrant }}>
+          <FontAwesomeIcon icon="reply" />
+          <FontAwesomeIcon icon="reply-all" />
+          <FontAwesomeIcon icon="reply" flip="horizontal" />
+          <FontAwesomeIcon icon="times" className={styles.greyedOut} />
+          <FontAwesomeIcon icon="trash-alt" className={styles.greyedOut} />
+          <FontAwesomeIcon icon="star" />
+          <FontAwesomeIcon icon="print" />
+        </div>
+        {renderTab()}
+      </div>
+    </div>
+  );
 }
 
 export default connect(mapStateToProps)(Contact);

@@ -21,6 +21,7 @@ const mapDispatchToProps = {
 
 function Taskbar(props) {
   const [batteryLevel, setBatteryLevel] = useState();
+  const { currentWindows } = props;
 
   const renderBattery = ({ battery }) => {
     let batteryIcon = "battery-";
@@ -45,8 +46,6 @@ function Taskbar(props) {
   }
 
   const renderTaskbarWindows = () => {
-    const { currentWindows } = props;
-
     if (currentWindows.length) {
       return currentWindows.map((window, index) => {
         return <TaskbarTab key={index} window={window} onClick={changeActive(index)}>
