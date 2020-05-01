@@ -37,7 +37,9 @@ class Taskbar extends React.Component {
     } else {
       batteryIcon += "full"
     }
-    return <FontAwesomeIcon icon={batteryIcon} title={this.state.batteryLevel + "%"} />
+
+    const hover = this.state.batteryLevel ? this.state.batteryLevel + "%" : "Battery not supported";
+    return <FontAwesomeIcon icon={batteryIcon} title={hover} />
   }
 
   changeActive = (index) => (event) => {
