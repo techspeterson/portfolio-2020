@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { connect } from "react-redux";
 import styles from "./DesktopIcon.module.css";
@@ -9,32 +9,28 @@ function mapStateToProps(state) {
   }
 }
 
-class DesktopIcon extends React.Component {
-  state = {
-    colour: this.props.palette.vibrant
-  }
+function DesktopIcon(props) {
+  const [colour, setColour] = useState(props.palette.vibrant);
 
-  toggleHover = () => {
-    const { palette } = this.props;
+  const toggleHover = () => {
+    const { palette } = props;
 
-    if (this.state.colour === palette.vibrant) {
-      this.setState({ colour: palette.darkVibrant })
+    if (colour === palette.vibrant) {
+      setColour(palette.darkVibrant);
     }
     else {
-      this.setState({ colour: palette.vibrant })
+      setColour(palette.vibrant);
     }
   }
 
-  render() {
-    const { icon, className, onClick } = this.props;
+  const { icon, className, onClick } = props;
 
-    return (
-      <div className={styles.iconContainer + (className ? " " + className : "")} onClick={onClick} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} >
-        <FontAwesomeIcon className={styles.icon} icon={icon} style={{ background: this.state.colour }} />
-        <span className={styles.name} style={{ background: this.state.colour }} >{this.props.name}</span>
-      </div>
-    )
-  }
+  return (
+    <div className={styles.iconContainer + (className ? " " + className : "")} onClick={onClick} onMouseEnter={toggleHover} onMouseLeave={toggleHover} >
+      <FontAwesomeIcon className={styles.icon} icon={icon} style={{ background: colour }} />
+      <span className={styles.name} style={{ background: colour }} >{props.name}</span>
+    </div>
+  )
 }
 
 export default connect(mapStateToProps)(DesktopIcon);

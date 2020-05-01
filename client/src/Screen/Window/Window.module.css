@@ -27,6 +27,10 @@
   cursor: pointer;
 }
 
+.disabled {
+  cursor: initial !important;
+}
+
 .windowInner {
   background: white;
   color: black;

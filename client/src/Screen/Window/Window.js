@@ -28,9 +28,9 @@ class Window extends React.Component {
         <div className={styles.topBar}>
           <span>{windowObj.title}</span>
           <div className={styles.windowControls}>
-            <WindowButton icon="window-minimize" className={styles.notOnMobile} />
-            <WindowButton icon="window-maximize" className={styles.notOnMobile} />
-            <WindowButton icon="window-close" onClick={this.closeWindow} />
+            <WindowButton icon="window-minimize" className={`${styles.notOnMobile} ${styles.disabled}`} />
+            <WindowButton icon="window-maximize" className={`${styles.notOnMobile} ${styles.disabled}`} />
+            <WindowButton icon="window-close" onClick={this.closeWindow} enabled={true} />
           </div>
         </div>
         <div className={styles.windowInner}>

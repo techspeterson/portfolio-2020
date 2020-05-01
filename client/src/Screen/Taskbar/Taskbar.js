@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Taskbar.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Clock from 'react-live-clock';
@@ -19,12 +19,10 @@ const mapDispatchToProps = {
   setActiveWindow
 }
 
-class Taskbar extends React.Component {
-  state = {
-    batteryLevel: null
-  }
+function Taskbar(props) {
+  const [batteryLevel, setBatteryLevel] = useState();
 
-  renderBattery = ({ battery }) => {
+  const renderBattery = ({ battery }) => {
     let batteryIcon = "battery-";
     if (battery < 5) {
       batteryIcon += "empty"
@@ -38,20 +36,20 @@ class Taskbar extends React.Component {
       batteryIcon += "full"
     }
 
-    const hover = this.state.batteryLevel ? this.state.batteryLevel + "%" : "Battery not supported";
+    const hover = batteryLevel ? batteryLevel + "%" : "Battery not supported";
     return <FontAwesomeIcon icon={batteryIcon} title={hover} />
   }
 
-  changeActive = (index) => (event) => {
-    this.props.setActiveWindow(index);
+  const changeActive = (index) => () => {
+    props.setActiveWindow(index);
   }
 
-  renderTaskbarWindows = () => {
-    const { currentWindows } = this.props;
+  const renderTaskbarWindows = () => {
+    const { currentWindows } = props;
 
     if (currentWindows.length) {
       return currentWindows.map((window, index) => {
-        return <TaskbarTab key={index} window={window} onClick={this.changeActive(index)}>
+        return <TaskbarTab key={index} window={window} onClick={changeActive(index)}>
           <FontAwesomeIcon icon={window.icon} className={styles.tabIcon} />
           {window.title}
         </TaskbarTab>;
@@ -59,28 +57,25 @@ class Taskbar extends React.Component {
     }
   }
 
-  render() {
-    const { palette } = this.props;
 
-    return (
-      <div className={styles.taskbar} style={{ color: palette.darkVibrant }}>
-        <FontAwesomeIcon icon="star" />
-        <div className={styles.taskbarTabs}>
-          {this.renderTaskbarWindows()}
-        </div>
-        <div className={styles.taskbarRight}>
-          <FontAwesomeIcon icon="wifi" />
-          <Battery
-            render={this.renderBattery}
-            onChange={(battery) => {
-              this.setState({ batteryLevel: battery });
-            }}
-          />
-          <Clock format={"h:mm A"} ticking={true} title={new Date().toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric", year: "numeric" })} />
-        </div>
+  return (
+    <div className={styles.taskbar} style={{ color: props.palette.darkVibrant }}>
+      <FontAwesomeIcon icon="star" />
+      <div className={styles.taskbarTabs}>
+        {renderTaskbarWindows()}
       </div>
-    )
-  }
+      <div className={styles.taskbarRight}>
+        <FontAwesomeIcon icon="wifi" />
+        <Battery
+          render={renderBattery}
+          onChange={(battery) => {
+            setBatteryLevel(battery);
+          }}
+        />
+        <Clock format={"h:mm A"} ticking={true} title={new Date().toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric", year: "numeric" })} />
+      </div>
+    </div>
+  )
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Taskbar);
