@@ -16,7 +16,7 @@ class Credits extends React.Component {
       <div style={{ padding: "10px" }}>
         &copy; Tessa Peterson 2020<br />
         Built in React<br />
-        Randomly generated desktop background by <Link href={bgInfo.url}>{bgInfo.author}</Link> on <Link href="https://unsplash.com/">Unsplash</Link>
+        <Link href={bgInfo.url}>Randomly generated desktop background</Link> by <Link href={bgInfo.author.url}>{bgInfo.author.name}</Link> on <Link href="https://unsplash.com/">Unsplash</Link>
       </div>
     );
   }

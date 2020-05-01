@@ -24,7 +24,10 @@ app.get("/bg", (req, res) => {
       res.json({
         imageURL: json.urls.raw,
         url: json.links.html,
-        author: json.user.name
+        author: {
+          name: json.user.name,
+          url: json.user.links.html
+        }
       });
     });
 });

@@ -20,11 +20,11 @@ export default class MyForm extends React.Component {
         className={styles.form}
       >
         <div className={styles.email}>
-          <label for="email">Email:</label>
+          <label htmlFor="email">Email:</label>
           <input type="email" name="email" id="email" />
         </div>
         <div className={styles.message}>
-          <label for="message">Message:</label><br />
+          <label htmlFor="message">Message:</label><br />
           <textarea name="message" id="message" />
         </div>
 

@@ -37,7 +37,10 @@ class Monitor extends React.Component {
         this.setState({ bgURL: defaultBg });
         this.props.setBgInfo({
           url: "https://unsplash.com/photos/ln5drpv_ImI",
-          author: "Vincentiu Solomon"
+          author: {
+            name: "Vincentiu Solomon",
+            url: "https://unsplash.com/@vincentiu"
+          }
         });
       });
   }
