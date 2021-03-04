@@ -16,5 +16,6 @@ Running `yarn start` in the project directory will start the development server 
 
 ## What's next?
 - More small interactive features, probably!
-- More tweaks to mobile layout
+- More tweaks to mobile layout, possible reworking for a "mobile first" focus
+- Better accessibility design, e.g. support for screen readers
 - Bring back the blog feature, maybe?

@@ -6,7 +6,7 @@ import styles from "./Contact.module.css";
 import Link from "../Components/Link";
 import ListItem from "../Components/ListItem";
 import ContactForm from "./ContactForm";
-import resume from "../../assets/Tessa Peterson - Resume Apr 2020.pdf"
+import resume from "../../assets/Tessa Peterson - Resume.pdf"
 
 function mapStateToProps(state) {
   return {
